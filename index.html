@@ -29,15 +29,11 @@
       }
 
       .main_menu .main_menu_bg {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: clamp(1rem, 2vw, 2.5rem);
-        align-items: center;
-      }
-
-      .main_menu_start {
-        display: inline-flex;
-        align-items: center;
-        gap: clamp(0.75rem, 1.6vw, 1.5rem);
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
       }
 
       .main_menu .navbar-brand {
@@ -50,6 +46,27 @@
       .main_menu .navbar-brand img {
         width: 100%;
         height: auto;
+      }
+
+      .main_menu .navbar-toggler {
+        border: 0;
+        padding: 0;
+        color: var(--colorWhite);
+      }
+
+      .main_menu .navbar-toggler:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .main_menu .language_switch {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(0.4rem, 1vw, 0.75rem);
+      }
+
+      .main_menu .language_switch__btn {
+        padding: 0.4rem 0.85rem;
       }
 
       .home_4 .banner {
@@ -370,15 +387,24 @@
       @media (max-width: 991.98px) {
         .main_menu .main_menu_bg {
           padding-inline: clamp(1rem, 4vw, 2.5rem);
+          justify-content: space-between;
         }
 
         .main_menu .navbar-nav {
-          gap: 0.4rem;
+          width: 100%;
+          gap: 0.6rem;
           padding-block: 0.75rem;
+          align-items: center;
         }
 
         .main_menu .navbar-nav .nav-link {
           padding: 0.6rem 0;
+        }
+
+        .main_menu .language_switch {
+          width: 100%;
+          justify-content: center;
+          margin-top: 0.75rem;
         }
 
         .tf__banner_text,
@@ -514,13 +540,12 @@
           width: 100%;
         }
 
-        .main_menu_start {
-          width: 100%;
-          justify-content: space-between;
-        }
-
         .main_menu .navbar-brand {
           max-width: clamp(120px, 45vw, 160px);
+        }
+
+        .main_menu .navbar-toggler {
+          margin-left: auto;
         }
 
         .wn-chatbot__panel {
@@ -532,6 +557,17 @@
       @media (min-width: 992px) {
         .home_4 .banner .row {
           align-items: center;
+        }
+
+        .main_menu .navbar-nav {
+          margin-left: auto;
+          margin-right: auto;
+          gap: clamp(1rem, 2vw, 1.8rem);
+          align-items: center;
+        }
+
+        .main_menu .language_switch {
+          margin-left: clamp(1.5rem, 3vw, 2.5rem);
         }
 
         .tf__section_heading {
@@ -563,39 +599,14 @@
     =================================-->
     <nav class="navbar navbar-expand-lg main_menu">
       <div class="container main_menu_bg">
-        <div class="main_menu_start">
-          <a class="navbar-brand" href="#home" aria-label="Wahyu Nur Home">
-            <img
-              src="images/logo.png"
-              alt="Wahyu Nur"
-              class="img-fluid w-100"
-              data-i18n-alt="brand.alt"
-            />
-          </a>
-          <div
-            class="language_switch"
-            role="group"
-            aria-label="Select language"
-            data-i18n-aria-label="lang.switcher"
-          >
-            <button
-              type="button"
-              class="language_switch__btn"
-              data-lang="id"
-              aria-pressed="false"
-            >
-              ID
-            </button>
-            <button
-              type="button"
-              class="language_switch__btn is-active"
-              data-lang="en"
-              aria-pressed="true"
-            >
-              EN
-            </button>
-          </div>
-        </div>
+        <a class="navbar-brand" href="#home" aria-label="Wahyu Nur Home">
+          <img
+            src="images/logo.png"
+            alt="Wahyu Nur"
+            class="img-fluid w-100"
+            data-i18n-alt="brand.alt"
+          />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -609,7 +620,7 @@
           <i class="fa-regular fa-xmark close_icon"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav m-auto">
+          <ul class="navbar-nav mx-lg-auto">
             <li class="nav-item">
               <a
                 class="nav-link text_hover_animaiton active"
@@ -645,20 +656,35 @@
             <li class="nav-item">
               <a
                 class="nav-link text_hover_animaiton"
-                href="#blogs"
-                data-i18n="nav.blog"
-                >Blog</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link text_hover_animaiton"
                 href="#footer"
                 data-i18n="nav.contact"
                 >Contact</a
               >
             </li>
           </ul>
+          <div
+            class="language_switch ms-lg-3"
+            role="group"
+            aria-label="Select language"
+            data-i18n-aria-label="lang.switcher"
+          >
+            <button
+              type="button"
+              class="language_switch__btn"
+              data-lang="id"
+              aria-pressed="false"
+            >
+              ID
+            </button>
+            <button
+              type="button"
+              class="language_switch__btn is-active"
+              data-lang="en"
+              aria-pressed="true"
+            >
+              EN
+            </button>
+          </div>
           <span
             class="toggle_icon c-pointer"
             data-bs-toggle="offcanvas"
@@ -691,7 +717,7 @@
           <div class="offcanvas-content-box">
             <h4 class="offcanvas_title">About</h4>
             <p>
-              I’m a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality.
+              I'm a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality.
               I develop aims to deliver performance, clarity, and meaningful user interaction.
             </p>
           </div>
@@ -744,7 +770,7 @@
                 </span>
               </h1>
               <p data-i18n="hero.description">
-                I’m a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality. 
+                I'm a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality. 
                 Every project I develop aims to deliver performance, clarity, and meaningful user interaction.
               </p>
               <ul>
@@ -872,9 +898,9 @@
             </div>
             <div class="tf_about_text">
               <p data-i18n="about.description">
-                Nemo design enim ipsam voluptatem quim voluptas sit aspernatur
-                aut odit auting fugit sed thisnquia consequuntur magni dolores
-                eos designer heresm qui ratione.
+                I’m a Fullstack Developer with 2 years of experience creating modern, efficient, and user-focused digital solutions.
+I adapt to each project’s unique needs and always strive to deliver high-quality results through thoughtful design and clean development.
+My work blends creativity, problem-solving, and a continuous passion for learning new technologies.
               </p>
             </div>
           </div>
@@ -1120,119 +1146,7 @@
         BRAND END
     =================================-->
 
-    <!--================================
-        BLOG START
-    =================================-->
-    <section class="tf__blog pt_125 xs_pt_75 pb_40 xs_pb_0" id="blogs">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-8 col-lg-9 mb_30">
-            <div class="tf__section_heading">
-              <h5 class="has-animation">My blog</h5>
-              <h2 class="has-animation">
-                Unlocking the potential of your personal brand
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div class="row g-4 g-xl-5">
-          <div class="col-xl-4 col-md-6">
-            <div class="tf__slingle_blog fade_left" data-trigerId="blogs">
-              <a
-                href="#blogs"
-                class="tf__blog_img"
-                data-cursor="read <br> more"
-              >
-                <img
-                  src="images/blog/1.jpg"
-                  alt="blog"
-                  class="img-fluid w-100"
-                />
-              </a>
-              <div class="tf__blog_text">
-                <span>31 December,2022</span>
-                <ul>
-                  <li>
-                    <i class="fa-sharp fa-solid fa-circle-user"></i> By admin
-                  </li>
-                  <li>
-                    <i class="fa-sharp fa-solid fa-comments"></i> Comments (05)
-                  </li>
-                </ul>
-                <a href="#blogs"
-                  >The standard personal My portfolio</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-md-6">
-            <div class="tf__slingle_blog fade_left" data-trigerId="blogs">
-              <a
-                href="#blogs"
-                class="tf__blog_img"
-                data-cursor="read <br> more"
-              >
-                <img
-                  src="images/blog/2.jpg"
-                  alt="blog"
-                  class="img-fluid w-100"
-                />
-              </a>
-              <div class="tf__blog_text">
-                <span>31 December,2022</span>
-                <ul>
-                  <li>
-                    <i class="fa-sharp fa-solid fa-circle-user"></i> By admin
-                  </li>
-                  <li>
-                    <i class="fa-sharp fa-solid fa-comments"></i> Comments (05)
-                  </li>
-                </ul>
-                <a href="#blogs"
-                  >The standard personal My portfolio</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-md-6">
-            <div class="tf__slingle_blog fade_left" data-trigerId="blogs">
-              <a
-                href="#blogs"
-                class="tf__blog_img"
-                data-cursor="read <br> more"
-              >
-                <img
-                  src="images/blog/3.jpg"
-                  alt="blog"
-                  class="img-fluid w-100"
-                />
-              </a>
-              <div class="tf__blog_text">
-                <span>31 December,2022</span>
-                <ul>
-                  <li>
-                    <i class="fa-sharp fa-solid fa-circle-user"></i> By admin
-                  </li>
-                  <li>
-                    <i class="fa-sharp fa-solid fa-comments"></i> Comments (05)
-                  </li>
-                </ul>
-                <a href="#blogs"
-                  >The standard personal My portfolio</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <a href="#blogs" class="common_btn">More Blog +</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--================================
-        BLOG END
-    =================================-->
-    <!--================================
+<!--================================
     
         FOOTER START
     =================================-->
@@ -1425,10 +1339,4 @@
   </body>
 
 </html>
-
-
-
-
-
-
 

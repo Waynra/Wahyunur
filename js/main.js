@@ -589,7 +589,7 @@
           "about.pretitle": "About Me",
           "about.title": "Transforming visions into exceptional portfolios",
           "about.description":
-            "Nemo design enim ipsam voluptatem quim voluptas sit aspernatur aut odit auting fugit sed thisnquia consequuntur magni dolores eos designer heresm qui ratione.",
+            "I'm a Fullstack Developer with 2 years of experience creating modern, efficient, and user-focused digital solutions. I adapt to each project's unique needs and strive to deliver high-quality results through thoughtful design and clean development. My work blends creativity, problem-solving, and a continuous passion for learning new technologies.",
           "about.activity.title": "Daily Activity",
           "about.activity.text": "Loream is ispam",
           "skills.pretitle": "Core Skills",
@@ -653,7 +653,7 @@
           "about.pretitle": "Tentang Saya",
           "about.title": "Mengubah visi menjadi portofolio yang mengesankan",
           "about.description":
-            "Nemo design enim ipsam voluptatem quim voluptas sit aspernatur aut odit auting fugit sed thisnquia consequuntur magni dolores eos designer heresm qui ratione.",
+            "Saya seorang Fullstack Developer dengan pengalaman 2 tahun dalam membangun solusi digital yang modern, efisien, dan berfokus pada pengguna. Saya menyesuaikan diri dengan kebutuhan unik setiap proyek dan selalu berupaya menghadirkan hasil berkualitas melalui desain yang matang serta pengembangan yang bersih. Karya saya memadukan kreativitas, pemecahan masalah, dan semangat untuk terus mempelajari teknologi baru.",
           "about.activity.title": "Aktivitas Harian",
           "about.activity.text": "Loream adalah ispam",
           "skills.pretitle": "Kemampuan Utama",
