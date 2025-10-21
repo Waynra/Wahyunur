@@ -19,14 +19,17 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <style>
       :root {
-        --wn-nav-gap: clamp(1rem, 2vw, 2.5rem);
-        --wn-content-max: clamp(44rem, 72vw, 60rem);
-        --wn-chat-side: clamp(16px, 5vw, 32px);
+        --wn-gap-section: clamp(3rem, 6vw, 5rem);
+        --wn-gap-block: clamp(2.25rem, 5vw, 4rem);
+        --wn-hero-title: clamp(2.4rem, 2vw + 2rem, 3.8rem);
+        --wn-hero-text: clamp(1rem, 0.35vw + 1rem, 1.15rem);
+        --wn-card-radius: 24px;
+        --wn-chat-side: clamp(16px, 5vw, 30px);
         --wn-chat-bottom: clamp(28px, 10vh, 110px);
       }
 
       .main_menu .main_menu_bg {
-        gap: var(--wn-nav-gap);
+        gap: clamp(1rem, 2vw, 2.5rem);
         align-items: center;
       }
 
@@ -50,9 +53,9 @@
       .home_4 .banner .content {
         position: relative;
         z-index: 2;
+        min-height: min(100dvh, 760px);
         display: flex;
         align-items: center;
-        min-height: min(100dvh, 760px);
         padding-block: clamp(3rem, 8vw, 6.5rem);
       }
 
@@ -61,24 +64,27 @@
       }
 
       .tf__banner_text {
-        max-width: var(--wn-content-max);
+        max-width: clamp(42rem, 70vw, 60rem);
       }
 
       .tf__banner_text h1,
       .tf__banner_text h1 span {
-        font-size: clamp(2.4rem, 2vw + 2.1rem, 3.8rem);
+        font-size: var(--wn-hero-title);
         line-height: 1.1;
       }
 
       .tf__banner_text p {
+        font-size: var(--wn-hero-text);
+        line-height: 1.65;
         max-width: clamp(32rem, 55vw, 40rem);
-        font-size: clamp(1rem, 0.35vw + 1rem, 1.125rem);
-        margin-bottom: 2rem;
+        margin-bottom: clamp(1.8rem, 3vw, 2.4rem);
       }
 
       .tf__banner_text ul {
-        gap: 1rem 1.5rem;
+        display: flex;
         flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+        align-items: center;
       }
 
       .tf__banner_img {
@@ -90,25 +96,80 @@
         margin-left: auto;
       }
 
-      .tf__banner_img .img img,
+      .tf__banner_img img,
       .navbar-brand img,
       .tf__footer_content img {
         height: auto !important;
         object-fit: contain !important;
       }
 
-      #service .tf__single_service,
-      #service .tf__single_service .tf__single_service_text {
+      #service .tf__single_service {
         height: 100%;
+        padding: clamp(1.75rem, 3vw, 2.25rem);
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        border-radius: var(--wn-card-radius);
+      }
+
+      #service .tf__single_service span {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: clamp(64px, 10vw, 82px);
+        height: clamp(64px, 10vw, 82px);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .tf__about_img_text {
         left: 28px;
         right: auto;
+        bottom: 28px;
+      }
+
+      .tf__skills .tf__single_skills,
+      .tf__skills .tf__team_skills_bar_single {
+        height: 100%;
+        padding: clamp(1.6rem, 3vw, 2rem);
+        border-radius: var(--wn-card-radius);
+      }
+
+      .tf__skills .tf__team_skills_bar_single .barfiller {
+        margin-top: 0.75rem;
+      }
+
+      .skills-logo-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: clamp(1rem, 2vw, 1.75rem);
+        margin-top: clamp(2.25rem, 6vw, 3.5rem);
+      }
+
+      .skills-logo-grid span {
+        display: grid;
+        place-items: center;
+        width: clamp(64px, 12vw, 88px);
+        aspect-ratio: 1;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--colorWhite);
+        font-size: clamp(1.6rem, 5vw, 2.4rem);
+        transition: transform 0.25s ease, border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .skills-logo-grid span:hover {
+        transform: translateY(-6px);
+        border-color: var(--colorPrimary);
+        box-shadow: 0 16px 34px rgba(85, 230, 165, 0.1);
       }
 
       .tf__brand {
-        padding-block: clamp(2.6rem, 8vw, 4.5rem);
+        padding-block: var(--wn-gap-section);
       }
 
       .tf__brand .marquee_animi ul {
@@ -118,20 +179,15 @@
         gap: 1.25rem 2rem;
       }
 
-      .tf__brand .marquee_animi li {
-        white-space: nowrap;
-        font-weight: 600;
-      }
-
       .footer .tf__footer_content {
-        margin-bottom: 2rem;
         gap: 1.25rem;
+        margin-bottom: 2rem;
       }
 
       .footer .tf__footer_copyright ul {
         display: flex;
         flex-wrap: wrap;
-        gap: 1.5rem;
+        gap: 1.25rem 1.75rem;
       }
 
       .progress {
@@ -159,20 +215,19 @@
         width: min(340px, 88vw);
         max-height: min(calc(100vh - var(--wn-chat-bottom) - 90px), 520px);
         transform-origin: bottom right;
-        opacity: 0;
         transform: translateY(12px);
+        opacity: 0;
         transition: transform 0.25s ease, opacity 0.25s ease;
       }
 
       .wn-chatbot.is-open .wn-chatbot__panel {
-        opacity: 1;
         transform: translateY(0);
+        opacity: 1;
       }
 
       @media (max-width: 1199.98px) {
-        .tf__banner_text h1,
-        .tf__banner_text h1 span {
-          font-size: clamp(2.2rem, 1.6vw + 2rem, 3.2rem);
+        .tf__banner_text ul {
+          justify-content: center;
         }
       }
 
@@ -198,37 +253,36 @@
 
         .tf__banner_img {
           text-align: center;
-          margin-top: 2.5rem;
+          margin-top: clamp(2rem, 6vw, 3rem);
         }
 
         .tf__banner_img .img {
           margin-inline: auto;
+        }
+
+        #service .tf__single_service {
+          text-align: center;
         }
       }
 
       @media (max-width: 767.98px) {
         :root {
           --wn-chat-side: clamp(14px, 6vw, 26px);
-          --wn-chat-bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
-        }
-
-        .tf__banner_text h1,
-        .tf__banner_text h1 span {
-          font-size: clamp(1.95rem, 8vw, 2.75rem);
+          --wn-chat-bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
         }
 
         .tf__banner_text h1 {
-          margin-bottom: 1.5rem;
+          margin-bottom: clamp(1.4rem, 3vw, 1.8rem);
         }
 
         .tf__banner_text h1 span:first-child {
           display: block;
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.45rem;
         }
 
         .cd-headline.rotate-1 {
           display: block;
-          margin-top: 0.15rem;
+          margin-top: 0.25rem;
         }
 
         .cd-headline.rotate-1 .cd-words-wrapper {
@@ -236,15 +290,9 @@
           justify-content: center;
         }
 
-        .cd-headline.rotate-1 .cd-words-wrapper b {
-          font-size: inherit !important;
-        }
-
         .tf__banner_text p {
           margin-inline: auto;
           max-width: min(34rem, 92vw);
-          line-height: 1.6;
-          font-size: 1.05rem;
         }
 
         .tf__banner_text ul {
@@ -284,11 +332,15 @@
         .wn-chatbot__panel {
           width: min(92vw, 320px);
         }
+
+        .skills-logo-grid {
+          gap: clamp(0.9rem, 5vw, 1.5rem);
+        }
       }
 
       @media (max-width: 575.98px) {
         .home_4 .banner .content {
-          padding-block: clamp(2.2rem, 12vw, 3.4rem);
+          padding-block: clamp(2.1rem, 12vw, 3.2rem);
         }
 
         .tf__banner_text h1,
@@ -297,11 +349,11 @@
         }
 
         .tf__section_heading h2 {
-          font-size: clamp(1.65rem, 7.5vw, 2.1rem);
+          font-size: clamp(1.65rem, 7.5vw, 2.15rem);
         }
 
-        .tf__brand .marquee_animi ul {
-          gap: 1rem 1.3rem;
+        #service .tf__single_service span {
+          margin-inline: auto;
         }
 
         .footer .tf__footer_content {
@@ -331,6 +383,10 @@
       @media (min-width: 992px) {
         .home_4 .banner .row {
           align-items: center;
+        }
+
+        .tf__section_heading {
+          text-align: left;
         }
 
         .footer .tf__footer_content {
@@ -595,8 +651,8 @@
                   class="svg w-100"
                 />
               </span>
-              <h3>Website Development</h3>
-              <p>
+              <h3 data-i18n="service.website.title">Website Development</h3>
+              <p data-i18n="service.website.desc">
                 Design and develop responsive websites with Laravel, React, or
                 Vue.js - covering landing pages, dashboards, and full-stack
                 platforms.
@@ -612,8 +668,10 @@
                   class="svg w-100"
                 />
               </span>
-              <h3>AI Integration & Chatbot Development</h3>
-              <p>
+              <h3 data-i18n="service.ai.title">
+                AI Integration & Chatbot Development
+              </h3>
+              <p data-i18n="service.ai.desc">
                 Embed OpenAI or bespoke LLM chatbots into product journeys,
                 complete with context-aware automation.
               </p>
@@ -628,8 +686,8 @@
                   class="svg w-100"
                 />
               </span>
-              <h3>Apps Development</h3>
-              <p>
+              <h3 data-i18n="service.apps.title">Apps Development</h3>
+              <p data-i18n="service.apps.desc">
                 Ship cross-platform web and mobile apps with scalable
                 architecture, polished UI, and maintainable code.
               </p>
@@ -760,11 +818,12 @@
                 Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
                 aut fugit sed thisnquia consequuntur magni dolores eos qui
                 ratione voluptatem
+              </p>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xl-6 col-lg-6">
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-4">
             <div
               class="tf__team_skills_bar_single fade_bottom"
               data-trigerId="skills"
@@ -779,11 +838,11 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-lg-6">
+          <div class="col-sm-6 col-lg-4">
             <div
               class="tf__team_skills_bar_single fade_bottom"
               data-trigerId="skills"
-              data-stagger=".25"
+              data-stagger=".3"
             >
               <p>Python</p>
               <div id="bar2" class="barfiller">
@@ -794,11 +853,11 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-lg-6">
+          <div class="col-sm-6 col-lg-4">
             <div
               class="tf__team_skills_bar_single fade_bottom"
               data-trigerId="skills"
-              data-stagger=".25"
+              data-stagger=".35"
             >
               <p>CSS</p>
               <div id="bar3" class="barfiller">
@@ -809,13 +868,13 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-lg-6">
+          <div class="col-sm-6 col-lg-4">
             <div
               class="tf__team_skills_bar_single fade_bottom"
               data-trigerId="skills"
-              data-stagger=".25"
+              data-stagger=".4"
             >
-              <p>laravel</p>
+              <p>Laravel</p>
               <div id="bar4" class="barfiller">
                 <div class="tipWrap">
                   <span class="tip"></span>
@@ -824,13 +883,13 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-lg-6">
+          <div class="col-sm-6 col-lg-4">
             <div
               class="tf__team_skills_bar_single fade_bottom"
               data-trigerId="skills"
-              data-stagger=".25"
+              data-stagger=".45"
             >
-              <p>Java Script</p>
+              <p>JavaScript</p>
               <div id="bar5" class="barfiller">
                 <div class="tipWrap">
                   <span class="tip"></span>
@@ -839,11 +898,11 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-6 col-lg-6">
+          <div class="col-sm-6 col-lg-4">
             <div
               class="tf__team_skills_bar_single fade_bottom"
               data-trigerId="skills"
-              data-stagger=".25"
+              data-stagger=".5"
             >
               <p>Figma</p>
               <div id="bar6" class="barfiller">
@@ -854,6 +913,17 @@
               </div>
             </div>
           </div>
+        </div>
+        <h3 class="has-animation mt_40 text-center">
+          Skill yang saya kuasai
+        </h3>
+        <div class="skills-logo-grid">
+          <span><i class="fa-brands fa-html5" aria-hidden="true"></i></span>
+          <span><i class="fa-brands fa-python" aria-hidden="true"></i></span>
+          <span><i class="fa-brands fa-css3-alt" aria-hidden="true"></i></span>
+          <span><i class="fa-brands fa-laravel" aria-hidden="true"></i></span>
+          <span><i class="fa-brands fa-js" aria-hidden="true"></i></span>
+          <span><i class="fa-brands fa-figma" aria-hidden="true"></i></span>
         </div>
       </div>
     </section>
@@ -1043,7 +1113,7 @@
                   </div>
                   <div class="text">
                     <h3>Lets talk </h3>
-                    <a href="tel:+6285215163415">(+62) 85215163415</a>
+                    <a href="tel:+6285215163415">(+62)85215163415</a>
                   </div>
                 </div>
               </div>
@@ -1189,6 +1259,7 @@
   </body>
 
 </html>
+
 
 
 
