@@ -1,6 +1,5 @@
 # Wahyunur Portfolio
 
-Static personal portfolio site built from the ZYAN template with custom branding and responsive tweaks.
 
 ## 🚀 Getting Started
 
