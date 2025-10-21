@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
     />
     <title>Wahyu Nur - Personal Portfolio</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
@@ -19,9 +19,15 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <style>
       :root {
-        --wn-nav-gap: clamp(1.25rem, 2vw, 2.75rem);
-        --wn-chatbot-side: clamp(18px, 5vw, 30px);
-        --wn-chatbot-bottom: clamp(30px, 11vh, 110px);
+        --wn-nav-gap: clamp(1rem, 2vw, 2.5rem);
+        --wn-content-max: clamp(44rem, 72vw, 60rem);
+        --wn-chat-side: clamp(16px, 5vw, 32px);
+        --wn-chat-bottom: clamp(28px, 10vh, 110px);
+      }
+
+      .main_menu .main_menu_bg {
+        gap: var(--wn-nav-gap);
+        align-items: center;
       }
 
       .home_4 .banner {
@@ -46,7 +52,7 @@
         z-index: 2;
         display: flex;
         align-items: center;
-        min-height: 100dvh;
+        min-height: min(100dvh, 760px);
         padding-block: clamp(3rem, 8vw, 6.5rem);
       }
 
@@ -54,26 +60,55 @@
         width: 100%;
       }
 
-      .home_4 .main_menu_bg {
-        gap: var(--wn-nav-gap);
+      .tf__banner_text {
+        max-width: var(--wn-content-max);
       }
 
       .tf__banner_text h1,
       .tf__banner_text h1 span {
-        font-size: clamp(2.5rem, 1vw + 2.75rem, 3.8rem);
+        font-size: clamp(2.4rem, 2vw + 2.1rem, 3.8rem);
+        line-height: 1.1;
       }
 
       .tf__banner_text p {
-        max-width: 42rem;
+        max-width: clamp(32rem, 55vw, 40rem);
+        font-size: clamp(1rem, 0.35vw + 1rem, 1.125rem);
+        margin-bottom: 2rem;
       }
 
-      .tf__section_heading h2 {
-        font-size: clamp(2.15rem, 1vw + 2.2rem, 3.3rem);
-        line-height: 1.27;
+      .tf__banner_text ul {
+        gap: 1rem 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tf__banner_img {
+        text-align: right;
+      }
+
+      .tf__banner_img .img {
+        max-width: 420px;
+        margin-left: auto;
+      }
+
+      .tf__banner_img .img img,
+      .navbar-brand img,
+      .tf__footer_content img {
+        height: auto !important;
+        object-fit: contain !important;
+      }
+
+      #service .tf__single_service,
+      #service .tf__single_service .tf__single_service_text {
+        height: 100%;
+      }
+
+      .tf__about_img_text {
+        left: 28px;
+        right: auto;
       }
 
       .tf__brand {
-        padding-block: clamp(2.5rem, 8vw, 4.25rem);
+        padding-block: clamp(2.6rem, 8vw, 4.5rem);
       }
 
       .tf__brand .marquee_animi ul {
@@ -90,31 +125,55 @@
 
       .footer .tf__footer_content {
         margin-bottom: 2rem;
+        gap: 1.25rem;
+      }
+
+      .footer .tf__footer_copyright ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
       }
 
       .progress {
-        right: clamp(18px, 5vw, 32px);
-        bottom: clamp(52px, 12vh, 96px);
+        right: var(--wn-chat-side);
+        bottom: calc(var(--wn-chat-bottom) + 70px);
       }
 
       .wn-chatbot {
         position: fixed;
-        bottom: var(--wn-chatbot-bottom);
-        right: var(--wn-chatbot-side);
+        bottom: var(--wn-chat-bottom);
+        right: var(--wn-chat-side);
         z-index: 11000;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         gap: 12px;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+
+      .wn-chatbot__toggle {
+        min-width: 180px;
       }
 
       .wn-chatbot__panel {
-        width: min(340px, 80vw);
-        max-height: min(calc(100vh - var(--wn-chatbot-bottom) - 90px), 520px);
+        width: min(340px, 88vw);
+        max-height: min(calc(100vh - var(--wn-chat-bottom) - 90px), 520px);
+        transform-origin: bottom right;
+        opacity: 0;
+        transform: translateY(12px);
+        transition: transform 0.25s ease, opacity 0.25s ease;
       }
 
-      .wn-chatbot.is-open {
-        gap: 14px;
+      .wn-chatbot.is-open .wn-chatbot__panel {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1199.98px) {
+        .tf__banner_text h1,
+        .tf__banner_text h1 span {
+          font-size: clamp(2.2rem, 1.6vw + 2rem, 3.2rem);
+        }
       }
 
       @media (max-width: 991.98px) {
@@ -123,7 +182,7 @@
         }
 
         .main_menu .navbar-nav {
-          gap: 0.35rem;
+          gap: 0.4rem;
           padding-block: 0.75rem;
         }
 
@@ -131,36 +190,40 @@
           padding: 0.6rem 0;
         }
 
-        .tf__banner_text {
-          text-align: center;
-        }
-
-        .tf__banner_text ul {
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-
+        .tf__banner_text,
         .tf__section_heading {
           text-align: center;
+          margin-inline: auto;
+        }
+
+        .tf__banner_img {
+          text-align: center;
+          margin-top: 2.5rem;
+        }
+
+        .tf__banner_img .img {
+          margin-inline: auto;
         }
       }
 
       @media (max-width: 767.98px) {
         :root {
-          --wn-chatbot-side: clamp(16px, 6vw, 28px);
-          --wn-chatbot-bottom: calc(env(safe-area-inset-bottom, 0px) + 74px);
+          --wn-chat-side: clamp(14px, 6vw, 26px);
+          --wn-chat-bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
         }
 
         .tf__banner_text h1,
         .tf__banner_text h1 span {
-          font-size: clamp(2.05rem, 8vw, 3rem);
+          font-size: clamp(1.95rem, 8vw, 2.75rem);
+        }
+
+        .tf__banner_text p {
+          margin-inline: auto;
         }
 
         .tf__banner_text ul {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          gap: 0.75rem;
+          width: 100%;
+          justify-content: center;
         }
 
         .tf__banner_text ul li {
@@ -172,71 +235,28 @@
           justify-content: center;
         }
 
-        .tf__banner_img {
-          text-align: center;
-        }
-
-        .tf__banner_img .img {
-          max-width: 320px;
-          margin-inline: auto;
-        }
-
-        .tf__single_service {
-          padding: 1.75rem 1.5rem;
-          text-align: center;
-        }
-
-        .tf__single_service span {
-          display: block;
-          margin: 0 auto 1rem;
-          max-width: 70px;
-        }
-
-        .tf__single_skills,
-        .tf__team_skills_bar_single {
-          padding: 1.5rem;
-        }
-
-        .tf__about_img {
-          margin-top: 2.5rem;
-        }
-
         .tf__about_img_text {
           left: 50%;
-          right: auto;
-          bottom: -24px;
           transform: translateX(-50%);
-          width: max-content;
-        }
-
-        .tf__blog_text {
-          text-align: left;
+          bottom: -24px;
         }
 
         .progress {
-          left: clamp(16px, 6vw, 28px);
+          left: var(--wn-chat-side);
           right: auto;
-          bottom: clamp(48px, 14vh, 96px);
+          bottom: calc(var(--wn-chat-bottom) + 70px);
         }
 
         .wn-chatbot {
-          left: clamp(16px, 6vw, 28px);
-          right: clamp(16px, 6vw, 28px);
-          align-items: stretch;
+          right: var(--wn-chat-side);
         }
 
         .wn-chatbot__toggle {
-          width: 100%;
-          justify-content: center;
-          border-radius: 999px;
-          padding: 14px 18px;
-          font-size: 15px;
+          width: min(240px, 100%);
         }
 
         .wn-chatbot__panel {
-          width: 100%;
-          max-height: min(70vh, 520px);
-          margin-inline: auto;
+          width: min(92vw, 320px);
         }
       }
 
@@ -247,11 +267,11 @@
 
         .tf__banner_text h1,
         .tf__banner_text h1 span {
-          font-size: clamp(1.75rem, 9vw, 2.4rem);
+          font-size: clamp(1.7rem, 9vw, 2.2rem);
         }
 
         .tf__section_heading h2 {
-          font-size: clamp(1.7rem, 7.5vw, 2.15rem);
+          font-size: clamp(1.65rem, 7.5vw, 2.1rem);
         }
 
         .tf__brand .marquee_animi ul {
@@ -271,17 +291,13 @@
           text-align: center;
         }
 
-        .footer .tf__footer_copyright ul {
-          justify-content: center;
-          gap: 1.25rem;
-        }
-
         .wn-chatbot__toggle {
-          font-size: 14px;
-          padding: 12px 16px;
+          min-width: 0;
+          width: 100%;
         }
 
         .wn-chatbot__panel {
+          width: min(94vw, 360px);
           border-radius: 16px;
         }
       }
@@ -1147,6 +1163,7 @@
   </body>
 
 </html>
+
 
 
 
