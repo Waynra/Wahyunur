@@ -1,0 +1,971 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Wahyu Nur - Personal Portfolio</title>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="css/font-awesome-pro.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/scroll_button.css" />
+    <link rel="stylesheet" href="css/plugin.css" />
+    <link rel="stylesheet" href="css/spacing.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+      .home_4 .banner {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .home_4 .banner video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .home_4 .banner .overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
+
+      .home_4 .banner .content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        min-height: 100dvh;
+        padding-block: clamp(3rem, 8vw, 6rem);
+      }
+
+      .home_4 .banner .row {
+        width: 100%;
+      }
+
+      @media (max-width: 991.98px) {
+        .main_menu .navbar-nav {
+          gap: 0.35rem;
+          padding-block: 0.75rem;
+        }
+
+        .main_menu .navbar-nav .nav-link {
+          padding: 0.6rem 0;
+        }
+
+        .tf__banner_text h1,
+        .tf__banner_text h1 span {
+          font-size: clamp(2rem, 8vw, 3.25rem);
+        }
+
+        .tf__banner_text p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 575.98px) {
+        .home_4 .banner .content {
+          padding-block: clamp(2.5rem, 12vw, 3.5rem);
+        }
+
+        .home_4 .banner ul {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .home_4 .banner ul li a {
+          margin-right: 0;
+        }
+      }
+
+      .tf__brand {
+        padding-block: clamp(2.5rem, 8vw, 4rem);
+      }
+
+      .tf__brand .marquee_animi ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.25rem 2rem;
+      }
+
+      .tf__brand .marquee_animi li {
+        white-space: nowrap;
+        font-weight: 600;
+      }
+
+      .footer .tf__footer_content {
+        margin-bottom: 2rem;
+      }
+
+      @media (min-width: 992px) {
+        .home_4 .banner .row {
+          align-items: center;
+        }
+
+        .footer .tf__footer_content {
+          margin-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="home_4">
+    <!--================================
+        PRELOADER START
+    =================================-->
+    <div class="preloader">
+      <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+        <path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+      </svg>
+      <h5 class="preloader-text">Loading</h5>
+    </div>
+    <!--================================
+        PRELOADER END
+    =================================-->
+    <!--================================
+        MENU START
+    =================================-->
+    <nav class="navbar navbar-expand-lg main_menu">
+      <div class="container main_menu_bg">
+        <div class="main_menu_start">
+          <a class="navbar-brand" href="#home" aria-label="Wahyu Nur Home">
+            <img
+              src="images/logo.png"
+              alt="Wahyu Nur"
+              class="img-fluid w-100"
+              data-i18n-alt="brand.alt"
+            />
+          </a>
+          <div
+            class="language_switch"
+            role="group"
+            aria-label="Select language"
+            data-i18n-aria-label="lang.switcher"
+          >
+            <button
+              type="button"
+              class="language_switch__btn"
+              data-lang="id"
+              aria-pressed="false"
+            >
+              ID
+            </button>
+            <button
+              type="button"
+              class="language_switch__btn is-active"
+              data-lang="en"
+              aria-pressed="true"
+            >
+              EN
+            </button>
+          </div>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-sharp fa-regular fa-bars bar_icon"></i>
+          <i class="fa-regular fa-xmark close_icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link text_hover_animaiton active"
+                href="#home"
+                data-i18n="nav.home"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link text_hover_animaiton"
+                href="#about"
+                data-i18n="nav.about"
+                >About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link text_hover_animaiton"
+                href="#service"
+                data-i18n="nav.services"
+                >Services</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link text_hover_animaiton"
+                href="#blogs"
+                data-i18n="nav.blog"
+                >Blog</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link text_hover_animaiton"
+                href="#footer"
+                data-i18n="nav.contact"
+                >Contact</a
+              >
+            </li>
+          </ul>
+          <span
+            class="toggle_icon c-pointer"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+            ><i
+              class="fa-sharp fa-sharp fa-regular fa-bars bar_icon-staggered"
+            ></i
+          ></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+      <div class="offcanvas-header">
+        <a class="offcanvas-logo" href="#home">
+          <img src="images/logo2.png" alt="Wahyu Nur" class="img-fluid w-50" />
+        </a>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        >
+          <i class="fa-regular fa-xmark"></i>
+        </button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="tf__design_form offcanvas_form">
+          <div class="offcanvas-content-box">
+            <h4 class="offcanvas_title">About</h4>
+            <p>
+              I’m a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality.
+              I develop aims to deliver performance, clarity, and meaningful user interaction.
+            </p>
+          </div>
+          <div class="offcanvas_contact_form">
+            <h4 class="offcanvas_title">Get In Touch</h4>
+            <form action="#">
+              <input
+                type="text"
+                placeholder="Your Name"
+                aria-autocomplete="list"
+              />
+              <input type="email" placeholder="Your Email" />
+              <textarea rows="4" placeholder="Message"></textarea>
+              <button type="submit" class="common_btn">submit now</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--================================
+        MENU END
+    =================================-->
+
+    <!--================================
+        BANNER START
+    =================================-->
+    <section class="tf_banner banner" id="home">
+      <video
+        src="https://designsupply-web.com/samplecontent/vender/codepen/20181014.mp4"
+        loop
+        muted
+        autoplay
+        playsinline
+      ></video>
+      <div class="overlay"></div>
+
+      <div class="container content">
+        <div class="row justify-content-between align-items-center g-4 g-lg-5">
+          <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+            <div class="tf__banner_text text-center text-lg-start">
+              <h1>
+                <span data-i18n="hero.greeting">Hi, I'm Wahyu! Creative</span>
+                <span class="cd-headline rotate-1">
+                  <!-- ANIMATE TEXT VALUES: zoom, rotate-1, letters type, letters rotate-2, loading-bar, slide, clip, letters rotate-3, letters scale, push,  -->
+                  <span class="cd-words-wrapper">
+                    <b class="is-visible" data-i18n="hero.keyword1">Developer</b>
+                    <b data-i18n="hero.keyword2">Website</b>
+                    <b data-i18n="hero.keyword3">Mobile</b>
+                  </span>
+                </span>
+              </h1>
+              <p data-i18n="hero.description">
+                I’m a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality. 
+                Every project I develop aims to deliver performance, clarity, and meaningful user interaction.
+              </p>
+              <ul>
+                <li>
+                  <a class="common_btn" href="#" data-i18n="hero.download"
+                    >Download CV <i class="fa-solid fa-arrow-down-to-line"></i></a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="banner_video_btn play_btn"
+                    href="https://www.youtube.com/watch?v=B-ytMSuwbf8"
+                    data-i18n="hero.watch"
+                    ><i class="fa-sharp fa-solid fa-circle-play"></i> Watch the Video</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-sm-9 col-md-8 col-lg-4 col-xl-5 mx-auto mx-lg-0">
+            <div class="tf__banner_img text-center text-lg-end">
+              <div class="img">
+                <img
+                  src="images/banner_img_1.png"
+                  alt="WahyuNur"
+                  class="img-fluid w-100 banner_profile_photo"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================================
+        BANNER END
+    =================================-->
+    <!--================================
+        SERVICE START
+    =================================-->
+    <section class="tf__service pt_130 xs_pt_80" id="service">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 m-auto">
+            <div class="tf__section_heading mb_40">
+              <h5 class="has-animation" data-i18n="service.pretitle">
+                My Services
+              </h5>
+              <h2 class="has-animation" data-i18n="service.title">
+                Crafting innovation through code and creativity
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="tf__single_service fade_left" data-trigerId="service">
+              <span>
+                <img
+                  src="svg/website-design.svg"
+                  alt="service"
+                  class="svg w-100"
+                />
+              </span>
+              <h3>Website Development</h3>
+              <p>
+                Design and develop responsive websites with Laravel, React, or
+                Vue.js - covering landing pages, dashboards, and full-stack
+                platforms.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="tf__single_service fade_left" data-trigerId="service">
+              <span>
+                <img
+                  src="svg/logo-design.svg"
+                  alt="service"
+                  class="svg w-100"
+                />
+              </span>
+              <h3>AI Integration & Chatbot Development</h3>
+              <p>
+                Embed OpenAI or bespoke LLM chatbots into product journeys,
+                complete with context-aware automation.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="tf__single_service fade_left" data-trigerId="service">
+              <span>
+                <img
+                  src="svg/app-development.svg"
+                  alt="service"
+                  class="svg w-100"
+                />
+              </span>
+              <h3>Apps Development</h3>
+              <p>
+                Ship cross-platform web and mobile apps with scalable
+                architecture, polished UI, and maintainable code.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================================
+        SERVICE END
+    =================================-->
+
+    <!--================================
+        ABOUT START
+    =================================-->
+    <section class="tf__about pt_140 xs_pt_80" id="about">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-xxl-7 col-lg-6 col-xl-6">
+            <div class="tf__section_heading pb_80 xs_pb_50">
+              <h5 class="has-animation" data-i18n="about.pretitle">About Me</h5>
+              <h2 class="has-animation" data-i18n="about.title">
+                Transforming visions into exceptional portfolios
+              </h2>
+            </div>
+            <div class="tf_about_text">
+              <p data-i18n="about.description">
+                Nemo design enim ipsam voluptatem quim voluptas sit aspernatur
+                aut odit auting fugit sed thisnquia consequuntur magni dolores
+                eos designer heresm qui ratione.
+              </p>
+            </div>
+          </div>
+          <div class="col-xxl-4 col-lg-6 col-xl-6">
+            <div class="tf__about_img fade_right" data-trigerId="about">
+              <img
+                src="images/about_img.png"
+                alt="WahyuNur"
+                class="img-fluid w-100"
+              />
+              <div class="tf__about_img_text">
+                <i class="fas fa-chart-pie-alt"></i>
+                <div class="tf__about_content">
+                  <h4 data-i18n="about.activity.title">Daily Activity</h4>
+                  <p data-i18n="about.activity.text">Loream is ispam</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================================
+        ABOUT END
+    =================================-->
+
+    <!--================================
+        SKILLS START
+    =================================-->
+    <section class="tf__skills pt_115 xs_pt_75 pb_70 xs_pb_30" id="skills">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-10 col-lg-8 m-auto mb_60">
+            <div class="tf__section_heading mb_40">
+              <h5 class="has-animation">Education & Skill</h5>
+              <h2 class="has-animation">
+                Showcasing your talent <br />
+                amplifying your impact
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__single_skills fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".13"
+            >
+              <span>2014 - 2018</span>
+              <h3>Wordpress and End Developer</h3>
+              <p>
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut fugit sed thisnquia consequuntur magni dolores eos qui
+                ratione voluptatem
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__single_skills fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <span>2012 - 2014</span>
+              <h3>Python Developer</h3>
+              <p>
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut fugit sed thisnquia consequuntur magni dolores eos qui
+                ratione voluptatem
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__single_skills fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <span>2005 - 2009</span>
+              <h3>Kent State University</h3>
+              <p>
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut fugit sed thisnquia consequuntur magni dolores eos qui
+                ratione voluptatem
+              </p>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__single_skills fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <span>2009 - 2012</span>
+              <h3>User Experience Design</h3>
+              <p>
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut fugit sed thisnquia consequuntur magni dolores eos qui
+                ratione voluptatem
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__team_skills_bar_single fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <p>HTML</p>
+              <div id="bar1" class="barfiller">
+                <div class="tipWrap">
+                  <span class="tip"></span>
+                </div>
+                <span class="fill" data-percentage="75"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__team_skills_bar_single fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <p>Python</p>
+              <div id="bar2" class="barfiller">
+                <div class="tipWrap">
+                  <span class="tip"></span>
+                </div>
+                <span class="fill" data-percentage="90"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__team_skills_bar_single fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <p>CSS</p>
+              <div id="bar3" class="barfiller">
+                <div class="tipWrap">
+                  <span class="tip"></span>
+                </div>
+                <span class="fill" data-percentage="80"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__team_skills_bar_single fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <p>laravel</p>
+              <div id="bar4" class="barfiller">
+                <div class="tipWrap">
+                  <span class="tip"></span>
+                </div>
+                <span class="fill" data-percentage="70"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__team_skills_bar_single fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <p>Java Script</p>
+              <div id="bar5" class="barfiller">
+                <div class="tipWrap">
+                  <span class="tip"></span>
+                </div>
+                <span class="fill" data-percentage="70"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6">
+            <div
+              class="tf__team_skills_bar_single fade_bottom"
+              data-trigerId="skills"
+              data-stagger=".25"
+            >
+              <p>Figma</p>
+              <div id="bar6" class="barfiller">
+                <div class="tipWrap">
+                  <span class="tip"></span>
+                </div>
+                <span class="fill" data-percentage="80"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================================
+        SKILLS END
+    =================================-->
+
+    <!--================================
+        BRAND START
+    =================================-->
+    <section class="tf__brand mt_120 xs_mt_80">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="marquee_animi">
+              <ul>
+                <li>* PHP</li>
+                <li>* Python</li>
+                <li>* laravel</li>
+                <li>* figma</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================================
+        BRAND END
+    =================================-->
+
+    <!--================================
+        BLOG START
+    =================================-->
+    <section class="tf__blog pt_125 xs_pt_75 pb_40 xs_pb_0" id="blogs">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-8 col-lg-9 mb_30">
+            <div class="tf__section_heading">
+              <h5 class="has-animation">My blog</h5>
+              <h2 class="has-animation">
+                Unlocking the potential of your personal brand
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-4 col-md-6">
+            <div class="tf__slingle_blog fade_left" data-trigerId="blogs">
+              <a
+                href="#blogs"
+                class="tf__blog_img"
+                data-cursor="read <br> more"
+              >
+                <img
+                  src="images/blog/1.jpg"
+                  alt="blog"
+                  class="img-fluid w-100"
+                />
+              </a>
+              <div class="tf__blog_text">
+                <span>31 December,2022</span>
+                <ul>
+                  <li>
+                    <i class="fa-sharp fa-solid fa-circle-user"></i> By admin
+                  </li>
+                  <li>
+                    <i class="fa-sharp fa-solid fa-comments"></i> Comments (05)
+                  </li>
+                </ul>
+                <a href="#blogs"
+                  >The standard personal My portfolio</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="tf__slingle_blog fade_left" data-trigerId="blogs">
+              <a
+                href="#blogs"
+                class="tf__blog_img"
+                data-cursor="read <br> more"
+              >
+                <img
+                  src="images/blog/2.jpg"
+                  alt="blog"
+                  class="img-fluid w-100"
+                />
+              </a>
+              <div class="tf__blog_text">
+                <span>31 December,2022</span>
+                <ul>
+                  <li>
+                    <i class="fa-sharp fa-solid fa-circle-user"></i> By admin
+                  </li>
+                  <li>
+                    <i class="fa-sharp fa-solid fa-comments"></i> Comments (05)
+                  </li>
+                </ul>
+                <a href="#blogs"
+                  >The standard personal My portfolio</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6">
+            <div class="tf__slingle_blog fade_left" data-trigerId="blogs">
+              <a
+                href="#blogs"
+                class="tf__blog_img"
+                data-cursor="read <br> more"
+              >
+                <img
+                  src="images/blog/3.jpg"
+                  alt="blog"
+                  class="img-fluid w-100"
+                />
+              </a>
+              <div class="tf__blog_text">
+                <span>31 December,2022</span>
+                <ul>
+                  <li>
+                    <i class="fa-sharp fa-solid fa-circle-user"></i> By admin
+                  </li>
+                  <li>
+                    <i class="fa-sharp fa-solid fa-comments"></i> Comments (05)
+                  </li>
+                </ul>
+                <a href="#blogs"
+                  >The standard personal My portfolio</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <a href="#blogs" class="common_btn">More Blog +</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================================
+        BLOG END
+    =================================-->
+    <!--================================
+    
+        FOOTER START
+    =================================-->
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <div class="pt_120 xs_pt_80 sm_pt_80">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4">
+                <div
+                  class="tf__footer_content fade_right"
+                  data-trigerId="footer"
+                  data-stagger=".25"
+                >
+                  <div class="icon">
+                    <div class="icon-contianer">
+                      <img
+                        src="svg/map.svg"
+                        alt="footer"
+                        class="img-fluid w-100 svg"
+                      />
+                    </div>
+                  </div>
+                  <div class="text">
+                    <h3>Address</h3>
+                    <p>Jakarta,Indonesia</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div
+                  class="tf__footer_content fade_right"
+                  data-trigerId="footer"
+                  data-stagger=".25"
+                >
+                  <div class="icon">
+                    <div class="icon-contianer">
+                      <img
+                        src="svg/phone.svg"
+                        alt="footer"
+                        class="img-fluid w-100 svg"
+                      />
+                    </div>
+                  </div>
+                  <div class="text">
+                    <h3>Lets talk </h3>
+                    <a href="tel:+6285215163415">(+62) 85215163415</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div
+                  class="tf__footer_content fade_right"
+                  data-trigerId="footer"
+                  data-stagger=".25"
+                >
+                  <div class="icon">
+                    <div class="icon-contianer">
+                      <img
+                        src="svg/envelope.svg"
+                        alt="footer"
+                        class="img-fluid w-100 svg"
+                      />
+                    </div>
+                  </div>
+                  <div class="text">
+                    <h3>Send email</h3>
+                    <a href="mailto:wahyunur988@gmail.com"
+                      >wahyunur988@gmail.com</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="tf__footer_copyright">
+                  <p>&copy; Wahyunur 2025 | All Rights Reserved</p>
+                  <ul>
+                    <li>
+                      <a href="#" class="text_hover_animaiton"
+                        >Terms & Condition</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="text_hover_animaiton"
+                        >Privacy Policy</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" class="text_hover_animaiton">Sitemap</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--================================
+  FOOTER END
+=================================-->
+    <!--================================
+        SCROLL BUTTON START
+    =================================-->
+    <div class="progress active c-pointer">
+      <svg
+        class="progress-svg"
+        width="100%"
+        height="100%"
+        viewBox="-1 -1 102 102"
+      >
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
+      </svg>
+    </div>
+    <!--================================
+        SCROLL BUTTON END
+    =================================-->
+
+    <!--================================
+        CURSOR START
+    =================================-->
+    <div id="magic-cursor">
+      <div id="ball"></div>
+    </div>
+    <!--================================
+        CURSOR END
+    =================================-->
+
+    <div class="wn-chatbot" id="wn-chatbot">
+      <button
+        class="wn-chatbot__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="wn-chatbot-panel"
+      >
+        <span class="wn-chatbot__toggle-icon">?</span>
+        <span class="wn-chatbot__toggle-text" data-i18n="chat.toggle">Ask Wahyu</span>
+      </button>
+      <div
+        class="wn-chatbot__panel"
+        id="wn-chatbot-panel"
+        role="region"
+        aria-label="Wahyu AI Assistant"
+        hidden
+      >
+        <div class="wn-chatbot__header">
+          <div>
+            <h4 data-i18n="chat.title">Wahyu AI Assistant</h4>
+            <p data-i18n="chat.subtitle">Ask anything about Wahyu Nur</p>
+          </div>
+          <button
+            type="button"
+            class="wn-chatbot__close"
+            aria-label="Close chatbot"
+            data-i18n-aria-label="chat.close"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="wn-chatbot__messages" role="log" aria-live="polite"></div>
+        <form class="wn-chatbot__form" autocomplete="off">
+          <label class="visually-hidden" for="wn-chatbot-input" data-i18n="chat.label">
+            Type your question
+          </label>
+          <input
+            type="text"
+            id="wn-chatbot-input"
+            name="message"
+            placeholder="Ask about Wahyu..."
+            data-i18n-placeholder="chat.placeholder"
+            required
+          />
+          <button type="submit" class="common_btn" data-i18n="chat.submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+
+    <script src="js/plugin.js"></script>
+    <!--scroll button js-->
+    <script src="js/scroll_button.js"></script>
+    <!--sticky sidebar js-->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- Animation -->
+    <script src="js/animation.js"></script>
+    <!--main/custom js-->
+    <script src="js/main.js"></script>
+  </body>
+
+</html>
+
+
+
+
