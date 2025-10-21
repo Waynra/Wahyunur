@@ -1396,21 +1396,25 @@
 
         return pickDefault();
       };
-      const openChat = () => {
-        panel.hidden = false;
-        toggleBtn.setAttribute("aria-expanded", "true");
-        setTimeout(() => {
-          input.focus();
-        }, 150);
-        if (!messages.dataset.bootstrapped) {
-          appendMessage("bot", pickGreeting());
-          messages.dataset.bootstrapped = "true";
+      const syncChatState = (isOpen) => {
+        panel.hidden = !isOpen;
+        toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        chatbot.classList.toggle("is-open", isOpen);
+        if (isOpen) {
+          setTimeout(() => {
+            input.focus();
+          }, 150);
+          if (!messages.dataset.bootstrapped) {
+            appendMessage("bot", pickGreeting());
+            messages.dataset.bootstrapped = "true";
+          }
         }
       };
 
+      const openChat = () => syncChatState(true);
+
       const closeChat = () => {
-        panel.hidden = true;
-        toggleBtn.setAttribute("aria-expanded", "false");
+        syncChatState(false);
         toggleBtn.focus();
       };
 
