@@ -169,18 +169,21 @@
         }
 
         .progress {
-          right: 18px;
-          bottom: 120px;
+          right: 16px;
+          bottom: clamp(68px, 14vh, 110px);
         }
 
         .wn-chatbot {
-          right: 16px;
-          bottom: calc(env(safe-area-inset-bottom, 16px) + 16px);
+          display: flex !important;
+          right: clamp(14px, 5vw, 24px);
+          left: auto;
+          bottom: clamp(24px, 12vh, 96px);
+          padding-bottom: env(safe-area-inset-bottom, 0px);
         }
 
         .wn-chatbot__panel {
-          width: min(100%, 400px);
-          max-height: min(75vh, 520px);
+          width: min(92vw, 360px);
+          max-height: min(72vh, 520px);
         }
       }
 
@@ -238,19 +241,19 @@
         }
 
         .progress {
-          right: 16px;
-          bottom: 120px;
+          right: 14px;
+          bottom: clamp(60px, 16vh, 108px);
         }
 
         .wn-chatbot {
-          left: 16px;
-          right: 16px;
-          bottom: calc(env(safe-area-inset-bottom, 16px) + 20px);
+          right: clamp(14px, 6vw, 22px);
+          left: auto;
+          bottom: calc(env(safe-area-inset-bottom, 0px) + 72px);
           justify-content: flex-end;
         }
 
         .wn-chatbot__panel {
-          width: 100%;
+          width: min(100vw - 32px, 360px);
           max-width: none;
         }
       }
