@@ -33,6 +33,25 @@
         align-items: center;
       }
 
+      .main_menu_start {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(0.75rem, 1.6vw, 1.5rem);
+        flex-wrap: nowrap;
+      }
+
+      .main_menu .navbar-brand {
+        display: inline-flex;
+        align-items: center;
+        max-width: clamp(150px, 16vw, 220px);
+        min-width: 120px;
+      }
+
+      .main_menu .navbar-brand img {
+        width: 100%;
+        height: auto;
+      }
+
       .home_4 .banner {
         position: relative;
         overflow: hidden;
@@ -129,17 +148,6 @@
         bottom: 28px;
       }
 
-      .tf__skills .tf__single_skills,
-      .tf__skills .tf__team_skills_bar_single {
-        height: 100%;
-        padding: clamp(1.6rem, 3vw, 2rem);
-        border-radius: var(--wn-card-radius);
-      }
-
-      .tf__skills .tf__team_skills_bar_single .barfiller {
-        margin-top: 0.75rem;
-      }
-
       .skills-logo-grid {
         display: flex;
         flex-wrap: wrap;
@@ -156,16 +164,144 @@
         border-radius: 18px;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        color: var(--colorWhite);
         font-size: clamp(1.6rem, 5vw, 2.4rem);
         transition: transform 0.25s ease, border-color 0.25s ease,
           box-shadow 0.25s ease;
       }
 
+      .skills-logo-grid .skill-icon {
+        position: relative;
+        color: var(--colorWhite);
+      }
+
+      .skills-logo-grid .skill-html {
+        color: #e34f26;
+        background: rgba(227, 79, 38, 0.14);
+        border-color: rgba(227, 79, 38, 0.4);
+      }
+
+      .skills-logo-grid .skill-python {
+        color: #3776ab;
+        background: rgba(55, 118, 171, 0.14);
+        border-color: rgba(55, 118, 171, 0.4);
+      }
+
+      .skills-logo-grid .skill-css {
+        color: #1572b6;
+        background: rgba(21, 114, 182, 0.14);
+        border-color: rgba(21, 114, 182, 0.4);
+      }
+
+      .skills-logo-grid .skill-laravel {
+        color: #ff2d20;
+        background: rgba(255, 45, 32, 0.14);
+        border-color: rgba(255, 45, 32, 0.4);
+      }
+
+      .skills-logo-grid .skill-js {
+        color: #f7df1e;
+        background: rgba(247, 223, 30, 0.16);
+        border-color: rgba(247, 223, 30, 0.45);
+      }
+
+      .skills-logo-grid .skill-figma {
+        color: #f24e1e;
+        background: rgba(242, 78, 30, 0.14);
+        border-color: rgba(242, 78, 30, 0.4);
+      }
+
       .skills-logo-grid span:hover {
         transform: translateY(-6px);
-        border-color: var(--colorPrimary);
-        box-shadow: 0 16px 34px rgba(85, 230, 165, 0.1);
+        border-color: currentColor;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+      }
+
+      .tf__projects {
+        padding-block: var(--wn-gap-section);
+      }
+
+      .tf__projects .tf__section_heading {
+        margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+        text-align: left;
+      }
+
+      .tf__projects_grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: clamp(1.5rem, 4vw, 2.2rem);
+        margin-top: clamp(2rem, 5vw, 3rem);
+      }
+
+      .tf__projects_card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--wn-card-radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        transition: transform 0.25s ease, border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .tf__projects_card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(85, 230, 165, 0.4);
+        box-shadow: 0 24px 40px rgba(19, 19, 19, 0.35);
+      }
+
+      .tf__projects_card img {
+        width: 100%;
+        height: clamp(180px, 24vw, 220px);
+        object-fit: cover;
+      }
+
+      .tf__projects_card_body {
+        padding: clamp(1.4rem, 3vw, 1.8rem);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .tf__projects_card_meta {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .tf__projects_tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .tf__projects_tags li {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .tf__projects_links {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--colorWhite);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .tf__projects_links i {
+        transition: transform 0.25s ease;
+      }
+
+      .tf__projects_links:hover i {
+        transform: translateX(4px);
       }
 
       .tf__brand {
@@ -352,6 +488,10 @@
           font-size: clamp(1.65rem, 7.5vw, 2.15rem);
         }
 
+        .tf__projects_grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
         #service .tf__single_service span {
           margin-inline: auto;
         }
@@ -372,6 +512,15 @@
         .wn-chatbot__toggle {
           min-width: 0;
           width: 100%;
+        }
+
+        .main_menu_start {
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .main_menu .navbar-brand {
+          max-width: clamp(120px, 45vw, 160px);
         }
 
         .wn-chatbot__panel {
@@ -483,6 +632,14 @@
                 href="#service"
                 data-i18n="nav.services"
                 >Services</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link text_hover_animaiton"
+                href="#projects"
+                data-i18n="nav.projects"
+                >Projects</a
               >
             </li>
             <li class="nav-item">
@@ -749,186 +906,195 @@
     =================================-->
     <section class="tf__skills pt_115 xs_pt_75 pb_70 xs_pb_30" id="skills">
       <div class="container">
-        <div class="row">
-          <div class="col-xl-10 col-lg-8 m-auto mb_60">
-            <div class="tf__section_heading mb_40">
-              <h5 class="has-animation">Education & Skill</h5>
-              <h2 class="has-animation">
-                Showcasing your talent <br />
-                amplifying your impact
+        <div class="row justify-content-center">
+          <div class="col-xxl-8 col-xl-9 col-lg-10">
+            <div class="tf__section_heading mb_40 text-center">
+              <h5 class="has-animation" data-i18n="skills.pretitle">
+                Core Skills
+              </h5>
+              <h2 class="has-animation" data-i18n="skills.title">
+                Skills I Master
               </h2>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xl-6 col-lg-6">
-            <div
-              class="tf__single_skills fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".13"
-            >
-              <span>2014 - 2018</span>
-              <h3>Wordpress and End Developer</h3>
-              <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                aut fugit sed thisnquia consequuntur magni dolores eos qui
-                ratione voluptatem
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div
-              class="tf__single_skills fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".25"
-            >
-              <span>2012 - 2014</span>
-              <h3>Python Developer</h3>
-              <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                aut fugit sed thisnquia consequuntur magni dolores eos qui
-                ratione voluptatem
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div
-              class="tf__single_skills fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".25"
-            >
-              <span>2005 - 2009</span>
-              <h3>Kent State University</h3>
-              <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                aut fugit sed thisnquia consequuntur magni dolores eos qui
-                ratione voluptatem
-              </p>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6">
-            <div
-              class="tf__single_skills fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".25"
-            >
-              <span>2009 - 2012</span>
-              <h3>User Experience Design</h3>
-              <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                aut fugit sed thisnquia consequuntur magni dolores eos qui
-                ratione voluptatem
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row g-4">
-          <div class="col-sm-6 col-lg-4">
-            <div
-              class="tf__team_skills_bar_single fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".25"
-            >
-              <p>HTML</p>
-              <div id="bar1" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-                <span class="fill" data-percentage="75"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div
-              class="tf__team_skills_bar_single fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".3"
-            >
-              <p>Python</p>
-              <div id="bar2" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-                <span class="fill" data-percentage="90"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div
-              class="tf__team_skills_bar_single fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".35"
-            >
-              <p>CSS</p>
-              <div id="bar3" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-                <span class="fill" data-percentage="80"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div
-              class="tf__team_skills_bar_single fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".4"
-            >
-              <p>Laravel</p>
-              <div id="bar4" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-                <span class="fill" data-percentage="70"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div
-              class="tf__team_skills_bar_single fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".45"
-            >
-              <p>JavaScript</p>
-              <div id="bar5" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-                <span class="fill" data-percentage="70"></span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <div
-              class="tf__team_skills_bar_single fade_bottom"
-              data-trigerId="skills"
-              data-stagger=".5"
-            >
-              <p>Figma</p>
-              <div id="bar6" class="barfiller">
-                <div class="tipWrap">
-                  <span class="tip"></span>
-                </div>
-                <span class="fill" data-percentage="80"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h3 class="has-animation mt_40 text-center">
-          Skill yang saya kuasai
-        </h3>
-        <div class="skills-logo-grid">
-          <span><i class="fa-brands fa-html5" aria-hidden="true"></i></span>
-          <span><i class="fa-brands fa-python" aria-hidden="true"></i></span>
-          <span><i class="fa-brands fa-css3-alt" aria-hidden="true"></i></span>
-          <span><i class="fa-brands fa-laravel" aria-hidden="true"></i></span>
-          <span><i class="fa-brands fa-js" aria-hidden="true"></i></span>
-          <span><i class="fa-brands fa-figma" aria-hidden="true"></i></span>
+        <div class="skills-logo-grid" role="list">
+          <span
+            class="skill-icon skill-html has-animation"
+            role="listitem"
+            aria-label="HTML"
+          >
+            <i class="fa-brands fa-html5" aria-hidden="true"></i>
+            <span class="visually-hidden">HTML</span>
+          </span>
+          <span
+            class="skill-icon skill-python has-animation"
+            role="listitem"
+            aria-label="Python"
+          >
+            <i class="fa-brands fa-python" aria-hidden="true"></i>
+            <span class="visually-hidden">Python</span>
+          </span>
+          <span
+            class="skill-icon skill-css has-animation"
+            role="listitem"
+            aria-label="CSS"
+          >
+            <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
+            <span class="visually-hidden">CSS</span>
+          </span>
+          <span
+            class="skill-icon skill-laravel has-animation"
+            role="listitem"
+            aria-label="Laravel"
+          >
+            <i class="fa-brands fa-laravel" aria-hidden="true"></i>
+            <span class="visually-hidden">Laravel</span>
+          </span>
+          <span
+            class="skill-icon skill-js has-animation"
+            role="listitem"
+            aria-label="JavaScript"
+          >
+            <i class="fa-brands fa-js" aria-hidden="true"></i>
+            <span class="visually-hidden">JavaScript</span>
+          </span>
+          <span
+            class="skill-icon skill-figma has-animation"
+            role="listitem"
+            aria-label="Figma"
+          >
+            <i class="fa-brands fa-figma" aria-hidden="true"></i>
+            <span class="visually-hidden">Figma</span>
+          </span>
         </div>
       </div>
     </section>
     <!--================================
         SKILLS END
+    =================================-->
+
+    <!--================================
+        PROJECTS START
+    =================================-->
+    <section class="tf__projects" id="projects">
+      <div class="container">
+        <div class="row justify-content-center g-4 g-lg-5">
+          <div class="col-xl-8 col-lg-9">
+            <div class="tf__section_heading mb_0 text-center text-lg-start">
+              <h5 class="has-animation" data-i18n="projects.pretitle">
+                Selected Work
+              </h5>
+              <h2 class="has-animation" data-i18n="projects.title">
+                Projects I've Shipped
+              </h2>
+              <p class="has-animation" data-i18n="projects.subtitle">
+                Explore a snapshot of applications, websites, and products I've
+                crafted across various industries and stacks.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="tf__projects_grid">
+          <article class="tf__projects_card fade_left">
+            <img
+              src="images/blog/1.jpg"
+              alt="Preview of personal portfolio refresh project"
+              loading="lazy"
+            />
+            <div class="tf__projects_card_body">
+              <p class="tf__projects_card_meta" data-i18n="projects.card1.category">
+                Portfolio
+              </p>
+              <h3 data-i18n="projects.card1.title">Personal Portfolio Refresh</h3>
+              <p data-i18n="projects.card1.desc">
+                Revamped this portfolio with bilingual content, GSAP animations,
+                and a custom AI assistant that guides visitors through my work.
+              </p>
+              <ul class="tf__projects_tags">
+                <li>Next.js</li>
+                <li>Tailwind CSS</li>
+                <li>GSAP</li>
+              </ul>
+              <a
+                class="tf__projects_links"
+                href="https://example.com/portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="projects.card.cta">View project</span>
+                <i class="fa-sharp fa-solid fa-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+          <article class="tf__projects_card fade_left" data-stagger=".15">
+            <img
+              src="images/blog/2.jpg"
+              alt="Preview of commerce analytics dashboard"
+              loading="lazy"
+            />
+            <div class="tf__projects_card_body">
+              <p class="tf__projects_card_meta" data-i18n="projects.card2.category">
+                SaaS Dashboard
+              </p>
+              <h3 data-i18n="projects.card2.title">Commerce Analytics Dashboard</h3>
+              <p data-i18n="projects.card2.desc">
+                Built a revenue analytics suite with cohort analysis, inventory
+                monitors, and advanced reporting for multi-brand merchants.
+              </p>
+              <ul class="tf__projects_tags">
+                <li>Laravel</li>
+                <li>Vue</li>
+                <li>MySQL</li>
+                <li>Redis</li>
+              </ul>
+              <a
+                class="tf__projects_links"
+                href="https://example.com/commerce"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="projects.card.cta">View project</span>
+                <i class="fa-sharp fa-solid fa-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+          <article class="tf__projects_card fade_left" data-stagger=".3">
+            <img
+              src="images/blog/3.jpg"
+              alt="Preview of mobile learning platform"
+              loading="lazy"
+            />
+            <div class="tf__projects_card_body">
+              <p class="tf__projects_card_meta" data-i18n="projects.card3.category">
+                Mobile App
+              </p>
+              <h3 data-i18n="projects.card3.title">Mobile Learning Platform</h3>
+              <p data-i18n="projects.card3.desc">
+                Delivered a cross-platform learning experience featuring offline
+                courses, adaptive quizzes, and real-time progress tracking.
+              </p>
+              <ul class="tf__projects_tags">
+                <li>Flutter</li>
+                <li>Firebase</li>
+                <li>Figma</li>
+              </ul>
+              <a
+                class="tf__projects_links"
+                href="https://example.com/learning"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="projects.card.cta">View project</span>
+                <i class="fa-sharp fa-solid fa-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!--================================
+        PROJECTS END
     =================================-->
 
     <!--================================
@@ -969,7 +1135,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row g-4 g-xl-5">
           <div class="col-xl-4 col-md-6">
             <div class="tf__slingle_blog fade_left" data-trigerId="blogs">
               <a
@@ -1074,8 +1240,8 @@
       <div class="footer-container">
         <div class="pt_120 xs_pt_80 sm_pt_80">
           <div class="container">
-            <div class="row">
-              <div class="col-lg-4">
+            <div class="row g-4 g-lg-5">
+              <div class="col-md-12 col-lg-4">
                 <div
                   class="tf__footer_content fade_right"
                   data-trigerId="footer"
@@ -1096,7 +1262,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4">
+              <div class="col-md-6 col-lg-4">
                 <div
                   class="tf__footer_content fade_right"
                   data-trigerId="footer"
@@ -1117,7 +1283,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4">
+              <div class="col-md-6 col-lg-4">
                 <div
                   class="tf__footer_content fade_right"
                   data-trigerId="footer"

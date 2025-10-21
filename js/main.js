@@ -561,6 +561,7 @@
           "nav.home": "Home",
           "nav.about": "About",
           "nav.services": "Services",
+          "nav.projects": "Projects",
           "nav.blog": "Blog",
           "nav.contact": "Contact",
           "hero.greeting": "Hi, I'm Wahyu! Creative",
@@ -591,6 +592,25 @@
             "Nemo design enim ipsam voluptatem quim voluptas sit aspernatur aut odit auting fugit sed thisnquia consequuntur magni dolores eos designer heresm qui ratione.",
           "about.activity.title": "Daily Activity",
           "about.activity.text": "Loream is ispam",
+          "skills.pretitle": "Core Skills",
+          "skills.title": "Skills I Master",
+          "projects.pretitle": "Selected Work",
+          "projects.title": "Projects I've Shipped",
+          "projects.subtitle":
+            "Explore a snapshot of applications, websites, and products I've crafted across various industries and stacks.",
+          "projects.card.cta": "View project",
+          "projects.card1.category": "Portfolio",
+          "projects.card1.title": "Personal Portfolio Refresh",
+          "projects.card1.desc":
+            "Revamped this portfolio with bilingual content, GSAP animations, and a custom AI assistant that guides visitors through my work.",
+          "projects.card2.category": "SaaS Dashboard",
+          "projects.card2.title": "Commerce Analytics Dashboard",
+          "projects.card2.desc":
+            "Built a revenue analytics suite with cohort analysis, inventory monitors, and advanced reporting for multi-brand merchants.",
+          "projects.card3.category": "Mobile App",
+          "projects.card3.title": "Mobile Learning Platform",
+          "projects.card3.desc":
+            "Delivered a cross-platform learning experience featuring offline courses, adaptive quizzes, and real-time progress tracking.",
           "lang.switcher": "Select language",
           "chat.toggle": "Ask Wahyu",
           "chat.title": "Wahyu AI Assistant",
@@ -605,6 +625,7 @@
           "nav.home": "Beranda",
           "nav.about": "Tentang",
           "nav.services": "Layanan",
+          "nav.projects": "Proyek",
           "nav.blog": "Blog",
           "nav.contact": "Kontak",
           "hero.greeting": "Halo, saya Wahyu! Kreatif",
@@ -635,6 +656,25 @@
             "Nemo design enim ipsam voluptatem quim voluptas sit aspernatur aut odit auting fugit sed thisnquia consequuntur magni dolores eos designer heresm qui ratione.",
           "about.activity.title": "Aktivitas Harian",
           "about.activity.text": "Loream adalah ispam",
+          "skills.pretitle": "Kemampuan Utama",
+          "skills.title": "Skill yang Saya Kuasai",
+          "projects.pretitle": "Karya Pilihan",
+          "projects.title": "Proyek yang Telah Saya Bangun",
+          "projects.subtitle":
+            "Jelajahi rangkuman aplikasi, website, dan produk yang saya kembangkan untuk berbagai industri dan kebutuhan.",
+          "projects.card.cta": "Lihat proyek",
+          "projects.card1.category": "Portofolio",
+          "projects.card1.title": "Pembaruan Portofolio Pribadi",
+          "projects.card1.desc":
+            "Menyegarkan portofolio ini dengan konten dwibahasa, animasi GSAP, dan asisten AI kustom yang memandu pengunjung mengenal karya saya.",
+          "projects.card2.category": "Dasbor SaaS",
+          "projects.card2.title": "Dasbor Analitik Perdagangan",
+          "projects.card2.desc":
+            "Membangun rangkaian analitik pendapatan dengan analisis cohort, pemantau inventaris, dan pelaporan lanjutan untuk banyak brand.",
+          "projects.card3.category": "Aplikasi Mobile",
+          "projects.card3.title": "Platform Pembelajaran Mobile",
+          "projects.card3.desc":
+            "Menyediakan pengalaman belajar lintas platform dengan modul offline, kuis adaptif, dan pelacakan progres secara real time.",
           "lang.switcher": "Pilih bahasa",
           "chat.toggle": "Tanya Wahyu",
           "chat.title": "Asisten AI Wahyu",
@@ -644,6 +684,23 @@
           "chat.submit": "Kirim",
           "chat.close": "Tutup chatbot",
         },
+      };
+
+      const getTranslation = (key, lang) => {
+        const currentLang =
+          (lang ||
+            document.documentElement.getAttribute("lang") ||
+            localStorage.getItem("wn_lang") ||
+            "en") ?? "en";
+        const dict = translations[currentLang] || translations.en;
+        return dict[key] || "";
+      };
+
+      window.wnLocale = {
+        getTranslation,
+        getTranslations: () => translations,
+        getCurrentLanguage: () =>
+          document.documentElement.getAttribute("lang") || "en",
       };
 
       const storedLang = localStorage.getItem("wn_lang");
@@ -702,6 +759,9 @@
         applyTranslations(language);
         setActiveButton(language);
         localStorage.setItem("wn_lang", language);
+        window.dispatchEvent(
+          new CustomEvent("wn:language-changed", { detail: { lang: language } })
+        );
       };
 
       languageButtons.forEach((btn) => {
