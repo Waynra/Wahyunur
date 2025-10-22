@@ -147,6 +147,44 @@
         margin: 0 auto;
       }
 
+      .footer_social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer_social__link {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--colorBlack);
+        background: var(--colorWhite);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .footer_social__link i {
+        font-size: 1.1rem;
+      }
+
+      .footer_social__link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .footer_social__linkedin {
+        background: #0a66c2;
+        color: #ffffff;
+      }
+
+      .footer_social__github {
+        background: #ffffff;
+        color: #0f1115;
+      }
+
       .tf__banner_img {
         text-align: right;
       }
@@ -1332,6 +1370,26 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
             <div class="row">
               <div class="col-12">
                 <div class="tf__footer_copyright">
+                  <div class="footer_social">
+                    <a
+                      class="footer_social__link footer_social__linkedin"
+                      href="https://www.linkedin.com/in/wahyu-nur-a7247923a"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
+                      <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      class="footer_social__link footer_social__github"
+                      href="https://github.com/Waynra"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                    >
+                      <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                  </div>
                   <p>
                     &copy; <span id="current-year"></span> Wahyunur | All Rights
                     Reserved
