@@ -555,6 +555,41 @@
       const languageButtons = document.querySelectorAll(".language_switch__btn");
       if (!languageButtons.length) return;
 
+      const collectInitialTranslations = () => {
+        const map = {};
+        const assignIfValue = (key, value) => {
+          if (!key) return;
+          const stringValue =
+            typeof value === "string" ? value.trim() : `${value || ""}`.trim();
+          if (!stringValue) return;
+          map[key] = typeof value === "string" ? value.trim() : value;
+        };
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          assignIfValue(el.dataset.i18n, el.innerHTML);
+        });
+
+        document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-alt");
+          const altValue = el.getAttribute("alt") || el.getAttribute("title") || "";
+          assignIfValue(key, altValue);
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-placeholder");
+          assignIfValue(key, el.getAttribute("placeholder") || "");
+        });
+
+        document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-aria-label");
+          assignIfValue(key, el.getAttribute("aria-label") || "");
+        });
+
+        return map;
+      };
+
+      const initialTranslations = collectInitialTranslations();
+
       const translations = {
         en: {
           "brand.alt": "Wahyu Nur",
@@ -684,6 +719,11 @@
           "chat.submit": "Kirim",
           "chat.close": "Tutup chatbot",
         },
+      };
+
+      translations.en = {
+        ...translations.en,
+        ...initialTranslations,
       };
 
       const getTranslation = (key, lang) => {
