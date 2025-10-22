@@ -963,19 +963,23 @@ button {
 }
 
 .tf__banner_img .img {
-  height: auto;
   position: relative;
-  padding: 35px;
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 4;
+  padding: clamp(1.8rem, 5vw, 2.6rem);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
   z-index: 1;
-  max-width: 420px;
 }
 
 .tf__banner_img .banner_profile_photo {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  border-radius: 28px;
+  object-position: top center;
+  clip-path: polygon(50% 0%, 92% 18%, 92% 82%, 50% 100%, 8% 82%, 8% 18%);
   box-shadow: 0 25px 55px rgba(2, 5, 10, 0.35);
 }
 
@@ -1619,28 +1623,18 @@ main {
 
 .tf__footer_copyright {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  text-align: center;
   border-top: 1px solid #fff1;
   margin-top: 75px;
   padding: 35px 0px;
-}
-
-.tf__footer_copyright ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 60px;
-}
-
-.tf__footer_copyright ul li a,
-.tf__footer_copyright p {
   opacity: 0.5;
 }
 
-.tf__footer_copyright ul li a:hover {
-  color: var(--colorPrimary);
-  opacity: 1;
+.tf__footer_copyright p {
+  margin: 0;
+}
 }
 
 /* footer end */
