@@ -36,6 +36,12 @@
         flex-wrap: wrap;
       }
 
+      .main_menu .main_menu_start {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(0.6rem, 1.5vw, 1.1rem);
+      }
+
       .main_menu .navbar-brand {
         display: inline-flex;
         align-items: center;
@@ -62,11 +68,16 @@
       .main_menu .language_switch {
         display: inline-flex;
         align-items: center;
-        gap: clamp(0.4rem, 1vw, 0.75rem);
+        gap: clamp(0.35rem, 1vw, 0.6rem);
+        padding: 0.3rem 0.4rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
       }
 
       .main_menu .language_switch__btn {
-        padding: 0.4rem 0.85rem;
+        padding: 0.3rem 0.7rem;
+        font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+        line-height: 1;
       }
 
       .home_4 .banner {
@@ -388,6 +399,7 @@
         .main_menu .main_menu_bg {
           padding-inline: clamp(1rem, 4vw, 2.5rem);
           justify-content: space-between;
+          flex-wrap: wrap;
         }
 
         .main_menu .navbar-nav {
@@ -401,10 +413,31 @@
           padding: 0.6rem 0;
         }
 
+        .main_menu .main_menu_start {
+          flex: 1 1 auto;
+          min-width: 0;
+        }
+
         .main_menu .language_switch {
+          width: auto;
+          margin-top: 0;
+          flex-shrink: 0;
+        }
+
+        .main_menu .navbar-toggler {
+          margin-left: auto;
+          order: 2;
+        }
+
+        .main_menu .navbar-collapse {
+          flex-basis: 100%;
           width: 100%;
-          justify-content: center;
-          margin-top: 0.75rem;
+          order: 3;
+          margin-top: clamp(0.75rem, 2vw, 1.1rem);
+        }
+
+        .main_menu .toggle_icon {
+          display: none;
         }
 
         .tf__banner_text,
@@ -567,7 +600,7 @@
         }
 
         .main_menu .language_switch {
-          margin-left: clamp(1.5rem, 3vw, 2.5rem);
+          margin-left: 0;
         }
 
         .tf__section_heading {
@@ -599,14 +632,39 @@
     =================================-->
     <nav class="navbar navbar-expand-lg main_menu">
       <div class="container main_menu_bg">
-        <a class="navbar-brand" href="#home" aria-label="Wahyu Nur Home">
-          <img
-            src="images/logo.png"
-            alt="Wahyu Nur"
-            class="img-fluid w-100"
-            data-i18n-alt="brand.alt"
-          />
-        </a>
+        <div class="main_menu_start">
+          <a class="navbar-brand" href="#home" aria-label="Wahyu Nur Home">
+            <img
+              src="images/logo.png"
+              alt="Wahyu Nur"
+              class="img-fluid w-100"
+              data-i18n-alt="brand.alt"
+            />
+          </a>
+          <div
+            class="language_switch"
+            role="group"
+            aria-label="Select language"
+            data-i18n-aria-label="lang.switcher"
+          >
+            <button
+              type="button"
+              class="language_switch__btn"
+              data-lang="id"
+              aria-pressed="false"
+            >
+              ID
+            </button>
+            <button
+              type="button"
+              class="language_switch__btn is-active"
+              data-lang="en"
+              aria-pressed="true"
+            >
+              EN
+            </button>
+          </div>
+        </div>
         <button
           class="navbar-toggler"
           type="button"
@@ -662,29 +720,6 @@
               >
             </li>
           </ul>
-          <div
-            class="language_switch ms-lg-3"
-            role="group"
-            aria-label="Select language"
-            data-i18n-aria-label="lang.switcher"
-          >
-            <button
-              type="button"
-              class="language_switch__btn"
-              data-lang="id"
-              aria-pressed="false"
-            >
-              ID
-            </button>
-            <button
-              type="button"
-              class="language_switch__btn is-active"
-              data-lang="en"
-              aria-pressed="true"
-            >
-              EN
-            </button>
-          </div>
           <span
             class="toggle_icon c-pointer"
             data-bs-toggle="offcanvas"
