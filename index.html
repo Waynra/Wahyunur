@@ -100,10 +100,10 @@
       .home_4 .banner .content {
         position: relative;
         z-index: 2;
-        min-height: min(100dvh, 760px);
+        min-height: clamp(26rem, 82vh, 560px);
         display: flex;
         align-items: center;
-        padding-block: clamp(3rem, 8vw, 6.5rem);
+        padding-block: clamp(2rem, 5vw, 3.75rem);
       }
 
       .home_4 .banner .row {
@@ -132,6 +132,19 @@
         flex-wrap: wrap;
         gap: 1rem 1.5rem;
         align-items: center;
+      }
+
+      .tf__service.pt_130 {
+        padding-top: clamp(1.8rem, 4vw, 2.6rem) !important;
+      }
+
+      .tf__service .tf__section_heading {
+        margin-bottom: clamp(2rem, 5vw, 3rem);
+      }
+
+      .tf__service .tf__section_heading h5,
+      .tf__service .tf__section_heading h2 {
+        margin: 0 auto;
       }
 
       .tf__banner_img {
@@ -787,23 +800,47 @@
       <div class="offcanvas-body">
         <div class="tf__design_form offcanvas_form">
           <div class="offcanvas-content-box">
-            <h4 class="offcanvas_title">About</h4>
-            <p>
-              I'm a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality.
-              I develop aims to deliver performance, clarity, and meaningful user interaction.
+            <h4
+              class="offcanvas_title"
+              data-i18n="offcanvas.about.title"
+            >
+              About
+            </h4>
+            <p data-i18n="offcanvas.about.body">
+              I'm a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality. I develop aims to deliver performance, clarity, and meaningful user interaction.
             </p>
           </div>
           <div class="offcanvas_contact_form">
-            <h4 class="offcanvas_title">Get In Touch</h4>
+            <h4
+              class="offcanvas_title"
+              data-i18n="offcanvas.form.title"
+            >
+              Get In Touch
+            </h4>
             <form action="#">
               <input
                 type="text"
                 placeholder="Your Name"
+                data-i18n-placeholder="offcanvas.form.name"
                 aria-autocomplete="list"
               />
-              <input type="email" placeholder="Your Email" />
-              <textarea rows="4" placeholder="Message"></textarea>
-              <button type="submit" class="common_btn">submit now</button>
+              <input
+                type="email"
+                placeholder="Your Email"
+                data-i18n-placeholder="offcanvas.form.email"
+              />
+              <textarea
+                rows="4"
+                placeholder="Message"
+                data-i18n-placeholder="offcanvas.form.message"
+              ></textarea>
+              <button
+                type="submit"
+                class="common_btn"
+                data-i18n="offcanvas.form.submit"
+              >
+                Submit Now
+              </button>
             </form>
           </div>
         </div>
@@ -987,7 +1024,7 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
                 <i class="fas fa-chart-pie-alt"></i>
                 <div class="tf__about_content">
                   <h4 data-i18n="about.activity.title">Daily Activity</h4>
-                  <p data-i18n="about.activity.text">Loream is ispam</p>
+                  <p data-i18n="about.activity.text">Coding lifestyle</p>
                 </div>
               </div>
             </div>
@@ -1102,17 +1139,16 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
             />
             <div class="tf__projects_card_body">
               <p class="tf__projects_card_meta" data-i18n="projects.card1.category">
-                Portfolio
+                Web Application
               </p>
-              <h3 data-i18n="projects.card1.title">Personal Portfolio Refresh</h3>
+              <h3 data-i18n="projects.card1.title">Logistics Management System</h3>
               <p data-i18n="projects.card1.desc">
-                Revamped this portfolio with bilingual content, GSAP animations,
-                and a custom AI assistant that guides visitors through my work.
+                A web-based logistics management platform that streamlines shipping operations and end-to-end tracking for growing businesses.
               </p>
               <ul class="tf__projects_tags">
-                <li>Next.js</li>
+                <li>Laravel</li>
                 <li>Tailwind CSS</li>
-                <li>GSAP</li>
+                <li>MYSQL</li>
               </ul>
               <a
                 class="tf__projects_links"
@@ -1243,8 +1279,8 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
                     </div>
                   </div>
                   <div class="text">
-                    <h3>Address</h3>
-                    <p>Jakarta,Indonesia</p>
+                    <h3 data-i18n="footer.address.title">Address</h3>
+                    <p data-i18n="footer.address.location">Jakarta, Indonesia</p>
                   </div>
                 </div>
               </div>
@@ -1264,7 +1300,7 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
                     </div>
                   </div>
                   <div class="text">
-                    <h3>Let's Talk</h3>
+                    <h3 data-i18n="footer.phone.title">Let's Talk</h3>
                     <a href="tel:+6285215163415">(+62)85215163415</a>
                   </div>
                 </div>
@@ -1285,7 +1321,7 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
                     </div>
                   </div>
                   <div class="text">
-                    <h3>Send email</h3>
+                    <h3 data-i18n="footer.email.title">Send Email</h3>
                     <a href="mailto:wahyunur988@gmail.com"
                       >wahyunur988@gmail.com</a
                     >

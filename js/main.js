@@ -599,8 +599,8 @@
           "nav.projects": "Projects",
           "nav.blog": "Blog",
           "nav.contact": "Contact",
-          "hero.greeting": "Hi, I'm Wahyu! Creative",
-          "hero.keyword1": "Developer",
+          "hero.greeting": "Hi, I'm Wahyu! Developer",
+          "hero.keyword1": "AI Chatbot",
           "hero.keyword2": "Website",
           "hero.keyword3": "Mobile",
           "hero.description":
@@ -609,6 +609,14 @@
             'Download CV <i class="fa-solid fa-arrow-down-to-line"></i>',
           "hero.watch":
             '<i class="fa-sharp fa-solid fa-circle-play"></i> Watch the Video',
+          "offcanvas.about.title": "About",
+          "offcanvas.about.body":
+            "I'm a fullstack developer focused on building impactful digital experiences through seamless integration between frontend design and backend functionality. I develop aims to deliver performance, clarity, and meaningful user interaction.",
+          "offcanvas.form.title": "Get In Touch",
+          "offcanvas.form.name": "Your Name",
+          "offcanvas.form.email": "Your Email",
+          "offcanvas.form.message": "Message",
+          "offcanvas.form.submit": "Submit Now",
           "service.pretitle": "My Services",
           "service.title":
             "Crafting innovation through code and creativity",
@@ -634,10 +642,10 @@
           "projects.subtitle":
             "Explore a snapshot of applications, websites, and products I've crafted across various industries and stacks.",
           "projects.card.cta": "View project",
-          "projects.card1.category": "Portfolio",
-          "projects.card1.title": "Personal Portfolio Refresh",
+          "projects.card1.category": "Web Application",
+          "projects.card1.title": "Logistics Management System",
           "projects.card1.desc":
-            "Revamped this portfolio with bilingual content, GSAP animations, and a custom AI assistant that guides visitors through my work.",
+            "A web-based logistics management platform that streamlines shipping operations and end-to-end tracking for growing businesses.",
           "projects.card2.category": "SaaS Dashboard",
           "projects.card2.title": "Commerce Analytics Dashboard",
           "projects.card2.desc":
@@ -646,6 +654,10 @@
           "projects.card3.title": "Mobile Learning Platform",
           "projects.card3.desc":
             "Delivered a cross-platform learning experience featuring offline courses, adaptive quizzes, and real-time progress tracking.",
+          "footer.address.title": "Address",
+          "footer.address.location": "Jakarta, Indonesia",
+          "footer.phone.title": "Let's Talk",
+          "footer.email.title": "Send Email",
           "lang.switcher": "Select language",
           "chat.toggle": "Ask Wahyu",
           "chat.title": "Wahyu AI Assistant",
@@ -663,8 +675,8 @@
           "nav.projects": "Proyek",
           "nav.blog": "Blog",
           "nav.contact": "Kontak",
-          "hero.greeting": "Halo, saya Wahyu! Kreatif",
-          "hero.keyword1": "Pengembang",
+          "hero.greeting": "Halo, saya Wahyu! Pengembang",
+          "hero.keyword1": "AI Chatbot",
           "hero.keyword2": "Situs Web",
           "hero.keyword3": "Mobile",
           "hero.description":
@@ -673,6 +685,14 @@
             'Unduh CV <i class="fa-solid fa-arrow-down-to-line"></i>',
           "hero.watch":
             '<i class="fa-sharp fa-solid fa-circle-play"></i> Tonton Videonya',
+          "offcanvas.about.title": "Tentang",
+          "offcanvas.about.body":
+            "Saya adalah pengembang fullstack yang fokus menghadirkan pengalaman digital yang berdampak melalui integrasi mulus antara desain frontend dan fungsionalitas backend. Setiap proyek yang saya kembangkan menekankan performa, kejelasan, serta interaksi pengguna yang bermakna.",
+          "offcanvas.form.title": "Hubungi Saya",
+          "offcanvas.form.name": "Nama Anda",
+          "offcanvas.form.email": "Email Anda",
+          "offcanvas.form.message": "Pesan",
+          "offcanvas.form.submit": "Kirim Sekarang",
           "service.pretitle": "Layanan Saya",
           "service.title":
             "Mewujudkan inovasi melalui kode dan kreativitas",
@@ -698,10 +718,10 @@
           "projects.subtitle":
             "Jelajahi rangkuman aplikasi, website, dan produk yang saya kembangkan untuk berbagai industri dan kebutuhan.",
           "projects.card.cta": "Lihat proyek",
-          "projects.card1.category": "Portofolio",
-          "projects.card1.title": "Pembaruan Portofolio Pribadi",
+          "projects.card1.category": "Aplikasi Web",
+          "projects.card1.title": "Sistem Manajemen Logistik",
           "projects.card1.desc":
-            "Menyegarkan portofolio ini dengan konten dwibahasa, animasi GSAP, dan asisten AI kustom yang memandu pengunjung mengenal karya saya.",
+            "Sistem manajemen logistik berbasis web yang membantu operasional pengiriman dan pelacakan barang secara menyeluruh untuk bisnis yang berkembang.",
           "projects.card2.category": "Dasbor SaaS",
           "projects.card2.title": "Dasbor Analitik Perdagangan",
           "projects.card2.desc":
@@ -710,6 +730,10 @@
           "projects.card3.title": "Platform Pembelajaran Mobile",
           "projects.card3.desc":
             "Menyediakan pengalaman belajar lintas platform dengan modul offline, kuis adaptif, dan pelacakan progres secara real time.",
+          "footer.address.title": "Alamat",
+          "footer.address.location": "Jakarta, Indonesia",
+          "footer.phone.title": "Mari Berbicara",
+          "footer.email.title": "Kirim Email",
           "lang.switcher": "Pilih bahasa",
           "chat.toggle": "Tanya Wahyu",
           "chat.title": "Asisten AI Wahyu",
