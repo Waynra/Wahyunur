@@ -139,8 +139,14 @@
       }
 
       .tf__banner_img .img {
-        max-width: 420px;
+        width: min(100%, 420px);
+        aspect-ratio: 3 / 4;
         margin-left: auto;
+        padding: clamp(1.8rem, 5vw, 2.6rem);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        position: relative;
       }
 
       .tf__banner_img img,
@@ -148,6 +154,14 @@
       .tf__footer_content img {
         height: auto !important;
         object-fit: contain !important;
+      }
+
+      .tf__banner_img .banner_profile_photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover !important;
+        object-position: top center;
+        clip-path: polygon(50% 0%, 92% 18%, 92% 82%, 50% 100%, 8% 82%, 8% 18%);
       }
 
       #service .tf__single_service {
@@ -965,7 +979,7 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
           <div class="col-xxl-4 col-lg-6 col-xl-6">
             <div class="tf__about_img fade_right" data-trigerId="about">
               <img
-                src="images/about_img.png"
+                src="images/about_img.jpg"
                 alt="WahyuNur"
                 class="img-fluid w-100"
               />
@@ -1250,8 +1264,16 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
                     </div>
                   </div>
                   <div class="text">
-                    <h3>Lets talk </h3>
-                    <a href="tel:+6285215163415">(+62)85215163415</a>
+                    <h3>Let's Talk</h3>
+                    <a
+                      href="https://wa.me/6285215163415?text=Halo%20Wahyu%2C%20saya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut."
+                      class="footer-contact-link"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Hubungi Wahyu melalui WhatsApp"
+                    >
+                      Chat via WhatsApp
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1272,9 +1294,15 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
                   </div>
                   <div class="text">
                     <h3>Send email</h3>
-                    <a href="mailto:wahyunur988@gmail.com"
-                      >wahyunur988@gmail.com</a
+                    <a
+                      href="mailto:wahyunur988@gmail.com?subject=Halo%20Wahyu&body=Halo%20Wahyu%2C%20saya%20ingin%20membahas..."
+                      class="footer-contact-link"
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Kirim email ke Wahyu Nur"
                     >
+                      wahyunur988@gmail.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1282,22 +1310,10 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
             <div class="row">
               <div class="col-12">
                 <div class="tf__footer_copyright">
-                  <p>&copy; Wahyunur 2025 | All Rights Reserved</p>
-                  <ul>
-                    <li>
-                      <a href="#" class="text_hover_animaiton"
-                        >Terms & Condition</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#" class="text_hover_animaiton"
-                        >Privacy Policy</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#" class="text_hover_animaiton">Sitemap</a>
-                    </li>
-                  </ul>
+                  <p>
+                    &copy; <span id="current-year"></span> Wahyunur | All Rights
+                    Reserved
+                  </p>
                 </div>
               </div>
             </div>
@@ -1394,7 +1410,14 @@ My work blends creativity, problem-solving, and a continuous passion for learnin
     <script src="js/animation.js"></script>
     <!--main/custom js-->
     <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const footerYearEl = document.getElementById("current-year");
+        if (footerYearEl) {
+          footerYearEl.textContent = new Date().getFullYear();
+        }
+      });
+    </script>
   </body>
 
 </html>
-
