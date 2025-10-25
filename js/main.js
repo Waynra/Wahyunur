@@ -646,10 +646,10 @@
           "projects.card1.title": "Logistics Management System",
           "projects.card1.desc":
             "A web-based logistics management platform that streamlines shipping operations and end-to-end tracking for growing businesses.",
-          "projects.card2.category": "SaaS Dashboard",
-          "projects.card2.title": "Commerce Analytics Dashboard",
+          "projects.card2.category": "Web AITF Indonesia",
+          "projects.card2.title": "Artificial Intelligence Talent Factory",
           "projects.card2.desc":
-            "Built a revenue analytics suite with cohort analysis, inventory monitors, and advanced reporting for multi-brand merchants.",
+            "Artificial Intelligence Talent Factory (AITF) is a national-level web platform developed to support Indonesia's Ministry of Communication and Digital Affairs in AI talent development.",
           "projects.card3.category": "Mobile App",
           "projects.card3.title": "Mobile Learning Platform",
           "projects.card3.desc":
@@ -722,10 +722,10 @@
           "projects.card1.title": "Sistem Manajemen Logistik",
           "projects.card1.desc":
             "Sistem manajemen logistik berbasis web yang membantu operasional pengiriman dan pelacakan barang secara menyeluruh untuk bisnis yang berkembang.",
-          "projects.card2.category": "Dasbor SaaS",
-          "projects.card2.title": "Dasbor Analitik Perdagangan",
+          "projects.card2.category": "Web AITF Indonesia",
+          "projects.card2.title": "Artificial Intelligence Talent Factory",
           "projects.card2.desc":
-            "Membangun rangkaian analitik pendapatan dengan analisis cohort, pemantau inventaris, dan pelaporan lanjutan untuk banyak brand.",
+            "Artificial Intelligence Talent Factory (AITF) adalah platform web tingkat nasional yang mendukung Kementerian Komunikasi dan Digital Indonesia dalam pengembangan talenta AI.",
           "projects.card3.category": "Aplikasi Mobile",
           "projects.card3.title": "Platform Pembelajaran Mobile",
           "projects.card3.desc":
@@ -847,6 +847,11 @@
       const form = chatbot.querySelector(".wn-chatbot__form");
       const input = chatbot.querySelector("#wn-chatbot-input");
       const messages = chatbot.querySelector(".wn-chatbot__messages");
+      const THINKING_DELAY = 2000;
+      const SCROLL_HIDE_THRESHOLD = 20;
+      const SCROLL_IDLE_DELAY = 600;
+      let lastScrollY = window.scrollY || 0;
+      let scrollIdleTimeout = null;
 
       function normalise(text) {
         return (text || "")
@@ -861,6 +866,13 @@
         const value =
           typeof source === "string" ? source : source.textContent || "";
         return value.replace(/\s+/g, " ").trim();
+      }
+
+      function keywordTokens(source) {
+        return normalise(source)
+          .replace(/[^a-z0-9\s]/g, " ")
+          .split(/\s+/)
+          .filter(Boolean);
       }
 
       function getLang() {
@@ -897,6 +909,21 @@
           ),
           description: cleanText(
             document.querySelector('[data-i18n="hero.description"]')
+          ),
+        };
+      }
+
+      function getAboutDetails() {
+        return {
+          title: cleanText(document.querySelector('#about [data-i18n="about.title"]')),
+          description: cleanText(
+            document.querySelector('#about [data-i18n="about.description"]')
+          ),
+          activityTitle: cleanText(
+            document.querySelector('[data-i18n="about.activity.title"]')
+          ),
+          activityText: cleanText(
+            document.querySelector('[data-i18n="about.activity.text"]')
           ),
         };
       }
@@ -976,64 +1003,160 @@
           : `Services on this page include ${summary}.`;
       }
 
-      function getTimeline() {
-        return Array.from(document.querySelectorAll("#skills .tf__single_skills"))
-          .map((item) => ({
-            period: cleanText(item.querySelector("span")),
-            title: cleanText(item.querySelector("h3")),
-            description: cleanText(item.querySelector("p")),
-          }))
-          .filter((entry) => entry.period && entry.title);
+      function getProjects() {
+        return Array.from(document.querySelectorAll("#projects .tf__projects_card"))
+          .map((card) => {
+            const title = cleanText(card.querySelector("h3"));
+            const category = cleanText(
+              card.querySelector(".tf__projects_card_meta")
+            );
+            const description = cleanText(
+              card.querySelector(
+                ".tf__projects_card_body p:not(.tf__projects_card_meta)"
+              )
+            );
+            const tags = Array.from(
+              card.querySelectorAll(".tf__projects_tags li")
+            )
+              .map((tag) => cleanText(tag))
+              .filter(Boolean);
+            const linkEl = card.querySelector(".tf__projects_links");
+            const href = linkEl ? linkEl.getAttribute("href") || "" : "";
+            return {
+              title,
+              category,
+              description,
+              tags,
+              href,
+            };
+          })
+          .filter((project) => project.title);
       }
 
-      function describeTimelineInfo() {
-        const timeline = getTimeline();
-        if (!timeline.length) return "";
+      function describeProjectsOverview() {
+        const projects = getProjects();
+        if (!projects.length) return "";
         const lang = getLang();
-        const summary = timeline
-          .map((item) => `${item.period} - ${item.title}`)
+        const summary = projects
+          .map((project) =>
+            project.category
+              ? `${project.title} (${project.category})`
+              : project.title
+          )
           .join("; ");
         return lang.startsWith("id")
-          ? `Timeline Education & Skill menampilkan ${summary}.`
-          : `The Education & Skill timeline highlights ${summary}.`;
+          ? `Bagian proyek menampilkan ${summary}.`
+          : `The projects section highlights ${summary}.`;
+      }
+
+      function describeProjectMatch(tokensSet, collapsedTokensSet) {
+        const projects = getProjects();
+        if (!projects.length) return "";
+
+        let bestMatch = null;
+        let bestScore = 0;
+
+        projects.forEach((project) => {
+          const titleTokens = keywordTokens(project.title).filter(Boolean);
+          const categoryTokens = keywordTokens(project.category);
+          const tagTokens = project.tags.flatMap((tag) => keywordTokens(tag));
+          const keywords = [...titleTokens, ...categoryTokens, ...tagTokens];
+          const collapsedTitle = titleTokens.join("");
+          const matchesCollapsed = collapsedTitle && collapsedTokensSet.has(collapsedTitle);
+          const directMatches = keywords.reduce(
+            (count, word) => count + (tokensSet.has(word) ? 1 : 0),
+            0
+          );
+          const tagMatch = tagTokens.some((word) => tokensSet.has(word));
+          const score = directMatches + (matchesCollapsed ? 2 : 0) + (tagMatch ? 1 : 0);
+          if (
+            score > bestScore &&
+            (score >= 2 || matchesCollapsed || tagMatch)
+          ) {
+            bestScore = score;
+            bestMatch = project;
+          }
+        });
+
+        if (!bestMatch) return "";
+
+        const lang = getLang();
+        const tagsText = bestMatch.tags.length
+          ? lang.startsWith("id")
+            ? ` Teknologi: ${bestMatch.tags.join(", ")}.`
+            : ` Tech used: ${bestMatch.tags.join(", ")}.`
+          : "";
+        return lang.startsWith("id")
+          ? `${bestMatch.title}${
+              bestMatch.category ? ` (${bestMatch.category})` : ""
+            } - ${bestMatch.description || "Detail proyek tersedia di bagian Projects."}${tagsText}`
+          : `${bestMatch.title}${
+              bestMatch.category ? ` (${bestMatch.category})` : ""
+            } - ${bestMatch.description || "Details live inside the Projects section."}${tagsText}`;
+      }
+
+      function getBrandSkills() {
+        return Array.from(document.querySelectorAll(".tf__brand li"))
+          .map((item) => cleanText(item).replace(/^\*+\s*/, "").trim())
+          .filter(Boolean);
+      }
+
+      function describeBrandInfo() {
+        const brandSkills = getBrandSkills();
+        if (!brandSkills.length) return "";
+        const lang = getLang();
+        const summary = listToSentence(
+          brandSkills,
+          lang.startsWith("id") ? "id" : "en"
+        );
+        return lang.startsWith("id")
+          ? `Marquee tech stack menyoroti ${summary}.`
+          : `The marquee tech stack highlights ${summary}.`;
       }
 
       function getSkills() {
-        return Array.from(
-          document.querySelectorAll("#skills .tf__team_skills_bar_single")
+        const iconSkills = Array.from(
+          document.querySelectorAll("#skills .skills-logo-grid .skill-icon")
         )
-          .map((item) => {
-            const name = cleanText(item.querySelector("p"));
-            const fill = item.querySelector(".fill");
-            const percentage = fill
-              ? fill.getAttribute("data-percentage") || fill.dataset.percentage
-              : "";
+          .map((icon) => {
+            const name =
+              icon.getAttribute("aria-label") ||
+              cleanText(icon.querySelector(".visually-hidden")) ||
+              cleanText(icon);
             return {
               name,
-              percentage: percentage ? percentage.replace(/[^0-9.]/g, "") : "",
+              percentage: "",
             };
           })
           .filter((skill) => skill.name);
+        const marqueeSkills = getBrandSkills().map((name) => ({
+          name,
+          percentage: "",
+        }));
+        const unique = [];
+        const seen = new Set();
+        [...iconSkills, ...marqueeSkills].forEach((skill) => {
+          const key = keywordTokens(skill.name).join("");
+          if (!key || seen.has(key)) return;
+          seen.add(key);
+          unique.push(skill);
+        });
+        return unique;
       }
 
       function describeSkillsOverview() {
         const skills = getSkills();
         if (!skills.length) return "";
         const lang = getLang();
-        const summary = skills
-          .map((skill) =>
-            skill.percentage
-              ? `${skill.name} ${skill.percentage}%`
-              : skill.name
-          )
-          .join(", ");
+        const summary = skills.map((skill) => skill.name).join(", ");
         return lang.startsWith("id")
-          ? `Skill bar menampilkan ${summary}.`
-          : `The skill bars show ${summary}.`;
+          ? `Grid skill menampilkan ${summary}.`
+          : `The skills grid highlights ${summary}.`;
       }
 
       function describeSkillMatch(tokensSet, collapsedTokensSet) {
         const skills = getSkills();
+        if (!skills.length) return "";
         const aliasMap = {
           html: [],
           css: [],
@@ -1043,26 +1166,27 @@
           figma: [],
         };
         for (const skill of skills) {
-          const normalized = normalise(skill.name)
-            .replace(/[^a-z0-9\s]/g, " ")
-            .trim();
-          const collapsed = normalized.replace(/\s+/g, "");
-          const parts = normalized.split(/\s+/).filter(Boolean);
+          const tokens = keywordTokens(skill.name);
+          const collapsed = tokens.join("");
           const aliases = aliasMap[collapsed] || [];
-          const matchesParts = parts.length && parts.every((part) => tokensSet.has(part));
-          const matchesCollapsed = collapsedTokensSet.has(collapsed);
+          const matchesTokens =
+            tokens.length && tokens.every((token) => tokensSet.has(token));
+          const matchesCollapsed = collapsed && collapsedTokensSet.has(collapsed);
           const matchesAlias = aliases.some((alias) => tokensSet.has(alias));
-          if (matchesParts || matchesCollapsed || matchesAlias) {
+          const matchesLoose = tokens.some(
+            (token) => token.length > 3 && tokensSet.has(token)
+          );
+          if (matchesTokens || matchesCollapsed || matchesAlias || matchesLoose) {
             const lang = getLang();
             const percentText = skill.percentage ? `${skill.percentage}%` : "";
             if (lang.startsWith("id")) {
               return percentText
-                ? `${skill.name} tercantum di skill bar dengan level ${percentText}.`
-                : `${skill.name} tercantum di skill bar.`;
+                ? `${skill.name} tercantum di grid skill dengan level ${percentText}.`
+                : `${skill.name} tercantum di grid skill.`;
             }
             return percentText
-              ? `${skill.name} appears in the skill bar at ${percentText}.`
-              : `${skill.name} appears in the skill bar.`;
+              ? `${skill.name} appears in the skills grid at ${percentText}.`
+              : `${skill.name} appears in the skills grid.`;
           }
         }
         return "";
@@ -1214,6 +1338,13 @@
           : `The blog section features ${summary}.`;
       }
 
+      function describeEducationInfo() {
+        const lang = getLang();
+        return lang.startsWith("id")
+          ? "Halaman ini belum memuat timeline pendidikan formal, kontennya menonjolkan layanan, skill, proyek, dan cara menghubungi Wahyu."
+          : "This page does not list a formal education timeline; it focuses on Wahyu's services, skills, shipped projects, and contact details.";
+      }
+
       function describeLanguageInfo() {
         const buttons = Array.from(
           document.querySelectorAll(".language_switch__btn")
@@ -1228,16 +1359,51 @@
 
       function describeProfileInfo() {
         const hero = getHeroDetails();
+        const about = getAboutDetails();
         const lang = getLang();
-        const description = hero.description;
-        if (lang.startsWith("id")) {
-          const extra = description
-            ? ` Deskripsi hero menuliskan: "${description}".`
+        const heroDescription = hero.description;
+        const aboutDescription =
+          about.description && about.description !== heroDescription
+            ? about.description
             : "";
-          return `Wahyu Nur adalah developer fullstack yang memadukan desain frontend dan backend untuk membangun pengalaman digital berdampak.${extra}`.trim();
+        const activityText = about.activityText;
+        const activityLabel = about.activityTitle;
+        if (lang.startsWith("id")) {
+          const parts = [
+            "Wahyu Nur adalah developer fullstack yang memadukan desain frontend dan backend untuk membangun pengalaman digital berdampak.",
+          ];
+          if (heroDescription) {
+            parts.push(`Deskripsi hero menuliskan: "${heroDescription}".`);
+          }
+          if (aboutDescription) {
+            parts.push(
+              `Bagian ${about.title || "About"} menyebutkan: "${aboutDescription}".`
+            );
+          }
+          if (activityText) {
+            parts.push(
+              `${activityLabel || "Daily Activity"} menegaskan ${activityText}.`
+            );
+          }
+          return parts.join(" ").trim();
         }
-        const extra = description ? ` The hero section states: "${description}".` : "";
-        return `Wahyu Nur is a fullstack developer who blends frontend design and backend engineering to deliver impactful digital experiences.${extra}`.trim();
+        const parts = [
+          "Wahyu Nur is a fullstack developer who blends frontend design and backend engineering to deliver impactful digital experiences.",
+        ];
+        if (heroDescription) {
+          parts.push(`The hero section states: "${heroDescription}".`);
+        }
+        if (aboutDescription) {
+          parts.push(
+            `The ${about.title || "About"} section adds: "${aboutDescription}".`
+          );
+        }
+        if (activityText) {
+          parts.push(
+            `${activityLabel || "Daily Activity"} highlights ${activityText}.`
+          );
+        }
+        return parts.join(" ").trim();
       }
 
       function describeMissionInfo() {
@@ -1297,6 +1463,21 @@
           "Pertanyaan itu belum ada jawabannya di sini. Kamu bisa menanyakan layanan, teknologi yang dipakai, pengalaman, blog, atau cara menghubungi Wahyu.",
           "Aku belum menemukan info itu di halaman ini. Fokuskan pertanyaan ke konten portofolio seperti jasa, skill, pencapaian, atau detail kontak.",
         ],
+      };
+
+      const cheerfulSuffixes = {
+        en: ["😊", "🙌", "🚀", "✨"],
+        id: ["😊", "🙌", "🎉", "✨"],
+      };
+
+      const cheerify = (text) => {
+        if (!text) return "";
+        const suffix = localizedRandom(cheerfulSuffixes);
+        if (!suffix) return text.trim();
+        const trimmed = text.trim();
+        const needsExcitement = !/[!?]$/.test(trimmed);
+        const excited = needsExcitement ? `${trimmed}!` : trimmed;
+        return `${excited} ${suffix}`;
       };
 
       const knowledgeBase = [
@@ -1372,13 +1553,26 @@
         },
         {
           tests: [
+            ["projects"],
+            ["proyek"],
+            ["portfolio", "project"],
+            ["hasil", "kerja"],
+            ["karya"],
+            ["case", "study"],
+            ["project", "wahyu"],
+            ["project", "section"],
+          ],
+          answer: describeProjectsOverview,
+        },
+        {
+          tests: [
             ["pendidikan"],
             ["education"],
             ["riwayat", "pendidikan"],
             ["timeline"],
             ["experience", "timeline"],
           ],
-          answer: describeTimelineInfo,
+          answer: describeEducationInfo,
         },
         {
           tests: [
@@ -1386,10 +1580,19 @@
             ["skills"],
             ["keahlian"],
             ["kemampuan"],
-            ["tech", "stack"],
             ["teknologi"],
           ],
           answer: describeSkillsOverview,
+        },
+        {
+          tests: [
+            ["brand"],
+            ["marquee"],
+            ["running", "text"],
+            ["scrolling", "stack"],
+            ["tech", "marquee"],
+          ],
+          answer: describeBrandInfo,
         },
         {
           tests: [["alamat"], ["address"], ["lokasi"], ["dimana", "wahyu"], ["based"]],
@@ -1470,6 +1673,37 @@
         messages.scrollTop = messages.scrollHeight;
       };
 
+      const appendBotMessage = (text, options = {}) => {
+        if (!text) return;
+        const finalText = options.skipCheer ? text : cheerify(text);
+        appendMessage("bot", finalText);
+      };
+
+      const showThinkingMessage = () => {
+        const wrapper = document.createElement("div");
+        wrapper.className =
+          "wn-chatbot__message wn-chatbot__message--bot wn-chatbot__message--thinking";
+        const bubble = document.createElement("div");
+        bubble.className = "wn-chatbot__bubble";
+        const label = document.createElement("span");
+        label.className = "wn-chatbot__thinking-text";
+        label.textContent = isIndonesian() ? "Sedang berpikir..." : "Thinking...";
+        const typing = document.createElement("div");
+        typing.className = "wn-chatbot__typing";
+        for (let i = 0; i < 3; i += 1) {
+          const dot = document.createElement("span");
+          dot.className = "wn-chatbot__typing-dot";
+          dot.style.animationDelay = `${i * 0.15}s`;
+          typing.appendChild(dot);
+        }
+        bubble.appendChild(label);
+        bubble.appendChild(typing);
+        wrapper.appendChild(bubble);
+        messages.appendChild(wrapper);
+        messages.scrollTop = messages.scrollHeight;
+        return wrapper;
+      };
+
       function resolveAnswer(answer) {
         const resolved = typeof answer === "function" ? answer() : answer;
         return typeof resolved === "string" ? resolved : "";
@@ -1492,10 +1726,9 @@
         );
 
         const contains = (keyword) => {
-          const cleanKeyword = normalise(keyword).replace(/[^a-z0-9\s]/g, " ");
-          const keywordTokens = cleanKeyword.split(/\s+/).filter(Boolean);
-          if (!keywordTokens.length) return false;
-          return keywordTokens.every((token) => tokensSet.has(token));
+          const tokensNeeded = keywordTokens(keyword);
+          if (!tokensNeeded.length) return false;
+          return tokensNeeded.every((token) => tokensSet.has(token));
         };
 
         const matchesRule = (tests = []) =>
@@ -1518,6 +1751,9 @@
         const skillAnswer = describeSkillMatch(tokensSet, collapsedTokensSet);
         if (skillAnswer) return skillAnswer;
 
+        const projectAnswer = describeProjectMatch(tokensSet, collapsedTokensSet);
+        if (projectAnswer) return projectAnswer;
+
         return pickDefault();
       };
       const syncChatState = (isOpen) => {
@@ -1525,11 +1761,14 @@
         toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
         chatbot.classList.toggle("is-open", isOpen);
         if (isOpen) {
+          chatbot.classList.remove("is-auto-hidden");
+        }
+        if (isOpen) {
           setTimeout(() => {
             input.focus();
           }, 150);
           if (!messages.dataset.bootstrapped) {
-            appendMessage("bot", pickGreeting());
+            appendBotMessage(pickGreeting());
             messages.dataset.bootstrapped = "true";
           }
         }
@@ -1561,9 +1800,13 @@
         input.value = "";
         input.focus();
 
+        const thinkingMessage = showThinkingMessage();
         setTimeout(() => {
-          appendMessage("bot", findResponse(value));
-        }, 350);
+          if (thinkingMessage && thinkingMessage.parentNode) {
+            thinkingMessage.remove();
+          }
+          appendBotMessage(findResponse(value));
+        }, THINKING_DELAY);
       });
 
       document.addEventListener("keydown", (event) => {
@@ -1571,6 +1814,35 @@
           closeChat();
         }
       });
+
+      const ensureChatVisible = () => {
+        chatbot.classList.remove("is-auto-hidden");
+      };
+
+      chatbot.addEventListener("mouseenter", ensureChatVisible);
+      chatbot.addEventListener("focusin", ensureChatVisible);
+      chatbot.addEventListener("touchstart", ensureChatVisible, { passive: true });
+
+      const handleScrollVisibility = () => {
+        const currentY = window.scrollY || document.documentElement.scrollTop || 0;
+        const delta = currentY - lastScrollY;
+        lastScrollY = currentY;
+        if (!panel.hidden) return;
+        if (Math.abs(delta) < SCROLL_HIDE_THRESHOLD) return;
+        if (delta > 0) {
+          chatbot.classList.add("is-auto-hidden");
+        } else {
+          chatbot.classList.remove("is-auto-hidden");
+        }
+        clearTimeout(scrollIdleTimeout);
+        scrollIdleTimeout = setTimeout(() => {
+          if (panel.hidden) {
+            chatbot.classList.remove("is-auto-hidden");
+          }
+        }, SCROLL_IDLE_DELAY);
+      };
+
+      window.addEventListener("scroll", handleScrollVisibility, { passive: true });
     },
   };
   $(document).ready(function () {
