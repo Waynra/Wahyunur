@@ -15,7 +15,7 @@ npx live-server .
 
 ## 📁 Project Structure
 
-- `index_4.html` – main landing page.
+- `index.html` – main landing page.
 - `css/` – global styles, spacing utilities, responsive rules, and plugin CSS.
 - `js/` – core interactions (animations, scroll button, sticky sidebar, chatbot).
 - `images/` & `svg/` – media assets referenced across the sections.
